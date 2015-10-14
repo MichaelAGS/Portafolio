@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Plato" table="PLATO" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idPlato" type="big_decimal">
+            <column name="ID_PLATO" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="menu" class="ModeloHibernate.Menu" fetch="select">
+            <column name="ID_MENU" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nombrePlato" type="string">
+            <column name="NOMBRE_PLATO" length="80" not-null="true" />
+        </property>
+        <set name="ingredientes" table="INGREDIENTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PLATO" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Ingrediente" />
+        </set>
+    </class>
+</hibernate-mapping>

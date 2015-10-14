@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.MateniaPrima" table="MATENIA_PRIMA" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idInventCoc" type="big_decimal">
+            <column name="ID_INVENT_COC" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="idMatPrim" type="big_decimal">
+            <column name="ID_MAT_PRIM" precision="22" scale="0" not-null="true" unique="true" />
+        </property>
+        <property name="nombreMatPrim" type="string">
+            <column name="NOMBRE_MAT_PRIM" length="50" not-null="true" />
+        </property>
+        <property name="cantidad" type="big_decimal">
+            <column name="CANTIDAD" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="inventarioCocinas" table="INVENTARIO_COCINA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_INVENT_COC1" precision="22" scale="0" />
+            </key>
+            <one-to-many class="ModeloHibernate.InventarioCocina" />
+        </set>
+    </class>
+</hibernate-mapping>

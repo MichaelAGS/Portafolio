@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.ReservaServExt" table="RESERVA_SERV_EXT" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idResServ" type="big_decimal">
+            <column name="ID_RES_SERV" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="reservaHabitacion" class="ModeloHibernate.ReservaHabitacion" fetch="select">
+            <column name="ID_RES_HAB" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="fechaResServ" type="date">
+            <column name="FECHA_RES_SERV" length="7" not-null="true" />
+        </property>
+        <set name="serviciosExtrases" table="RLT_RES_SERV_EXT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_RES_SERV" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="ModeloHibernate.ServiciosExtras">
+                <column name="ID_SERV_EXT" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

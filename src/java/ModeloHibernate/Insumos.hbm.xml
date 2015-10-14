@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Insumos" table="INSUMOS" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idInventCoc" type="big_decimal">
+            <column name="ID_INVENT_COC" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="idInsumo" type="big_decimal">
+            <column name="ID_INSUMO" precision="22" scale="0" not-null="true" unique="true" />
+        </property>
+        <property name="nombreInsumo" type="string">
+            <column name="NOMBRE_INSUMO" length="50" not-null="true" />
+        </property>
+        <property name="cantidad" type="big_decimal">
+            <column name="CANTIDAD" precision="22" scale="0" not-null="true" />
+        </property>
+        <one-to-one name="inventarioCocina" class="ModeloHibernate.InventarioCocina"></one-to-one>
+        <set name="menus" table="RLT_MENU_INSUMOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_INVENT_COC" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="ModeloHibernate.Menu">
+                <column name="ID_MENU" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

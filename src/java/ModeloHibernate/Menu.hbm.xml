@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Menu" table="MENU" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idMenu" type="big_decimal">
+            <column name="ID_MENU" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="hoteles" class="ModeloHibernate.Hoteles" fetch="select">
+            <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="precio" type="big_decimal">
+            <column name="PRECIO" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="FECHA" length="7" not-null="true" />
+        </property>
+        <set name="insumoses" table="RLT_MENU_INSUMOS" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ID_MENU" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="ModeloHibernate.Insumos">
+                <column name="ID_INVENT_COC" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="platos" table="PLATO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_MENU" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Plato" />
+        </set>
+        <set name="reservaHabitacions" table="RLT_MENU_RES_HAB" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ID_MENU" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="ModeloHibernate.ReservaHabitacion">
+                <column name="ID_RES_HAB" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

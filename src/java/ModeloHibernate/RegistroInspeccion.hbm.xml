@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.RegistroInspeccion" table="REGISTRO_INSPECCION" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idInspeccion" type="big_decimal">
+            <column name="ID_INSPECCION" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="habitaciones" class="ModeloHibernate.Habitaciones" fetch="select">
+            <column name="ID_HABITACION" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="fechaInspeccion" type="date">
+            <column name="FECHA_INSPECCION" length="7" not-null="true" />
+        </property>
+        <property name="tratamiento" type="string">
+            <column name="TRATAMIENTO" length="100" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

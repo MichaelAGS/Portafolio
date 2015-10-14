@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Hoteles" table="HOTELES" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idHotel" type="big_decimal">
+            <column name="ID_HOTEL" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreHotel" type="string">
+            <column name="NOMBRE_HOTEL" length="50" not-null="true" />
+        </property>
+        <property name="nroEstrellas" type="big_decimal">
+            <column name="NRO_ESTRELLAS" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="DIRECCION" length="50" not-null="true" />
+        </property>
+        <property name="cantidadHabitaciones" type="big_decimal">
+            <column name="CANTIDAD_HABITACIONES" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="paises" table="PAIS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Pais" />
+        </set>
+        <set name="ciudads" table="CIUDAD" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Ciudad" />
+        </set>
+        <set name="menus" table="MENU" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Menu" />
+        </set>
+        <set name="serviciosExtrases" table="SERVICIOS_EXTRAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.ServiciosExtras" />
+        </set>
+        <set name="habitacioneses" table="HABITACIONES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Habitaciones" />
+        </set>
+    </class>
+</hibernate-mapping>

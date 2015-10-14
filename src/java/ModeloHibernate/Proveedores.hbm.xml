@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Proveedores" table="PROVEEDORES" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idProveedor" type="big_decimal">
+            <column name="ID_PROVEEDOR" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="ciudad" class="ModeloHibernate.Ciudad" fetch="select">
+            <column name="ID_CIUDAD" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pais" class="ModeloHibernate.Pais" fetch="select">
+            <column name="ID_PAIS" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="rutProveedor" type="string">
+            <column name="RUT_PROVEEDOR" length="10" not-null="true" />
+        </property>
+        <property name="nombreProveedor" type="string">
+            <column name="NOMBRE_PROVEEDOR" length="50" not-null="true" />
+        </property>
+        <property name="telefono" type="big_decimal">
+            <column name="TELEFONO" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="DIRECCION" length="80" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="100" not-null="true" />
+        </property>
+        <property name="fechaRegistro" type="date">
+            <column name="FECHA_REGISTRO" length="7" not-null="true" />
+        </property>
+        <set name="inventarioCocinas" table="RLT_INV_COC_PROVE" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PROVEEDOR" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="ModeloHibernate.InventarioCocina">
+                <column name="ID_INVENT_COC" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

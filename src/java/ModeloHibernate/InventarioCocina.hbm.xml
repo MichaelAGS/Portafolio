@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.InventarioCocina" table="INVENTARIO_COCINA" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idInventCoc" type="big_decimal">
+            <column name="ID_INVENT_COC" precision="22" scale="0" />
+            <generator class="foreign">
+                <param name="property">insumos</param>
+            </generator>
+        </id>
+        <one-to-one name="insumos" class="ModeloHibernate.Insumos" constrained="true"></one-to-one>
+        <many-to-one name="mateniaPrima" class="ModeloHibernate.MateniaPrima" fetch="select">
+            <column name="ID_INVENT_COC1" precision="22" scale="0" />
+        </many-to-one>
+        <property name="nombreIngrediente" type="string">
+            <column name="NOMBRE_INGREDIENTE" length="50" not-null="true" />
+        </property>
+        <property name="cantidad" type="big_decimal">
+            <column name="CANTIDAD" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="proveedoreses" table="RLT_INV_COC_PROVE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_INVENT_COC" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="ModeloHibernate.Proveedores">
+                <column name="ID_PROVEEDOR" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="ingredientes" table="INGREDIENTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_INVENT_COC" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Ingrediente" />
+        </set>
+    </class>
+</hibernate-mapping>

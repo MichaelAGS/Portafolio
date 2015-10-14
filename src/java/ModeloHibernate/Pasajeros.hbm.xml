@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Pasajeros" table="PASAJEROS" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idPas" type="big_decimal">
+            <column name="ID_PAS" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="rutPas" type="string">
+            <column name="RUT_PAS" length="10" not-null="true" />
+        </property>
+        <property name="nombrePas" type="string">
+            <column name="NOMBRE_PAS" length="50" not-null="true" />
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="APELLIDO_PATERNO" length="50" not-null="true" />
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="APELLIDO_MATERNO" length="50" not-null="true" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="SEXO" length="20" not-null="true" />
+        </property>
+        <property name="nacionalidad" type="string">
+            <column name="NACIONALIDAD" length="50" not-null="true" />
+        </property>
+        <property name="residenciaActual" type="string">
+            <column name="RESIDENCIA_ACTUAL" length="100" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="FECHA_NACIMIENTO" length="7" not-null="true" />
+        </property>
+        <property name="regionNacimiento" type="string">
+            <column name="REGION_NACIMIENTO" length="50" not-null="true" />
+        </property>
+        <property name="telefono" type="big_decimal">
+            <column name="TELEFONO" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="50" not-null="true" />
+        </property>
+        <set name="habitacioneses" table="HABITACIONES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PAS" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Habitaciones" />
+        </set>
+    </class>
+</hibernate-mapping>

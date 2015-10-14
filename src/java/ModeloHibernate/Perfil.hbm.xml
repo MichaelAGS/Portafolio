@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Perfil" table="PERFIL" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idPerfil" type="big_decimal">
+            <column name="ID_PERFIL" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipoPerfil" type="string">
+            <column name="TIPO_PERFIL" length="50" not-null="true" />
+        </property>
+        <set name="usuarios" table="USUARIO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PERFIL" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

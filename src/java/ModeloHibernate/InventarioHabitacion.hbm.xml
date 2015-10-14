@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.InventarioHabitacion" table="INVENTARIO_HABITACION" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idInventHab" type="big_decimal">
+            <column name="ID_INVENT_HAB" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="costoAdicional" type="big_decimal">
+            <column name="COSTO_ADICIONAL" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="fechaRevision" type="date">
+            <column name="FECHA_REVISION" length="7" not-null="true" />
+        </property>
+        <set name="muebleses" table="RLT_MUEBLE_INV_HAB" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_INVENT_HAB" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="ModeloHibernate.Muebles">
+                <column name="ID_MUEBLE" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

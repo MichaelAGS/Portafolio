@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Habitaciones" table="HABITACIONES" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idHabitacion" type="big_decimal">
+            <column name="ID_HABITACION" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="hoteles" class="ModeloHibernate.Hoteles" fetch="select">
+            <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pasajeros" class="ModeloHibernate.Pasajeros" fetch="select">
+            <column name="ID_PAS" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoHabitacion" class="ModeloHibernate.TipoHabitacion" fetch="select">
+            <column name="ID_TIPO_HAB" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nroHabitacion" type="big_decimal">
+            <column name="NRO_HABITACION" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="nroCamas" type="big_decimal">
+            <column name="NRO_CAMAS" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="nroBanos" type="big_decimal">
+            <column name="NRO_BANOS" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="nroEstrellas" type="big_decimal">
+            <column name="NRO_ESTRELLAS" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="ESTADO" length="50" not-null="true" />
+        </property>
+        <property name="valorDiario" type="big_decimal">
+            <column name="VALOR_DIARIO" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="reservaHabitacions" table="RESERVA_HABITACION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HABITACION" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.ReservaHabitacion" />
+        </set>
+        <set name="promocionHabitacions" table="PROMOCION_HABITACION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HABITACION" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.PromocionHabitacion" />
+        </set>
+        <set name="registroInspeccions" table="REGISTRO_INSPECCION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HABITACION" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.RegistroInspeccion" />
+        </set>
+        <set name="muebleses" table="MUEBLES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_HABITACION" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Muebles" />
+        </set>
+    </class>
+</hibernate-mapping>

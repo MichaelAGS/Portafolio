@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.HistorialCobro" table="HISTORIAL_COBRO" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idCobro" type="big_decimal">
+            <column name="ID_COBRO" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="reservaHabitacion" class="ModeloHibernate.ReservaHabitacion" fetch="select">
+            <column name="ID_RES_HAB" precision="22" scale="0" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="cobro" type="big_decimal">
+            <column name="COBRO" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

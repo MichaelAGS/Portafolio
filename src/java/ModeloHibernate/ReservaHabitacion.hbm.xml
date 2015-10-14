@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.ReservaHabitacion" table="RESERVA_HABITACION" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idResHab" type="big_decimal">
+            <column name="ID_RES_HAB" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="habitaciones" class="ModeloHibernate.Habitaciones" fetch="select">
+            <column name="ID_HABITACION" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="ModeloHibernate.Usuario" fetch="select">
+            <column name="ID_USUARIO" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="precioTotal" type="big_decimal">
+            <column name="PRECIO_TOTAL" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="fechaInicio" type="date">
+            <column name="FECHA_INICIO" length="7" not-null="true" />
+        </property>
+        <property name="fechaTermino" type="date">
+            <column name="FECHA_TERMINO" length="7" not-null="true" />
+        </property>
+        <set name="reservaServExts" table="RESERVA_SERV_EXT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_RES_HAB" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.ReservaServExt" />
+        </set>
+        <set name="historialCobros" table="HISTORIAL_COBRO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_RES_HAB" precision="22" scale="0" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.HistorialCobro" />
+        </set>
+        <set name="menus" table="RLT_MENU_RES_HAB" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_RES_HAB" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="ModeloHibernate.Menu">
+                <column name="ID_MENU" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

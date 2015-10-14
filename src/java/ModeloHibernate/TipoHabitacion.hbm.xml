@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.TipoHabitacion" table="TIPO_HABITACION" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idTipoHab" type="big_decimal">
+            <column name="ID_TIPO_HAB" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreTipo" type="string">
+            <column name="NOMBRE_TIPO" length="50" not-null="true" />
+        </property>
+        <property name="valorDiario" type="big_decimal">
+            <column name="VALOR_DIARIO" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="habitacioneses" table="HABITACIONES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_TIPO_HAB" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Habitaciones" />
+        </set>
+    </class>
+</hibernate-mapping>

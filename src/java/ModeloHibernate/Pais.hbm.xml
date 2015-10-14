@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ModeloHibernate.Pais" table="PAIS" schema="PORTAFOLIO" optimistic-lock="version">
+        <id name="idPais" type="big_decimal">
+            <column name="ID_PAIS" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="hoteles" class="ModeloHibernate.Hoteles" fetch="select">
+            <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nombrePais" type="string">
+            <column name="NOMBRE_PAIS" length="50" not-null="true" />
+        </property>
+        <set name="empresas" table="EMPRESA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PAIS" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Empresa" />
+        </set>
+        <set name="proveedoreses" table="PROVEEDORES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PAIS" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="ModeloHibernate.Proveedores" />
+        </set>
+    </class>
+</hibernate-mapping>

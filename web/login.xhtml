@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template"/>
+    <meta name="author" content="GeeksLabs"/>
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal"/>
+    <link rel="shortcut icon" href="Public/img/favicon.png"/>
+
+    <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
+
+    <!-- Bootstrap CSS -->    
+    <link href="/HotelVERANUM/Public/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- bootstrap theme -->
+    <link href="/HotelVERANUM/Public/css/bootstrap-theme.css" rel="stylesheet"/>
+    <!--external css-->
+    <!-- font icon -->
+    <link href="/HotelVERANUM/Public/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="/HotelVERANUM/Public/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="/HotelVERANUM/Public/css/style.css" rel="stylesheet"/>
+    <link href="/HotelVERANUM/Public/css/style-responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</h:head>
+
+  <h:body class="login-img3-body">
+
+    <div class="container">
+
+      <h:form class="login-form" >        
+        <div class="login-wrap">
+            <p class="login-img"><i class="icon_lock_alt"></i></p>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon_profile"></i></span>
+              <h:inputText id="fieldUser" class="form-control" p:placeholder="Username" value="#{mbLogin.usuario}">
+                  <f:ajax event="keyup" render="mensajeNombre" listener="#{mbLogin.validateEmail(evento)}" />
+              </h:inputText>
+              
+            </div>
+            <h:outputText id="mensajeNombre" class="alert-danger" value="#{mbLogin.mensajeErrorNombre}"/>
+            
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <h:inputSecret  class="form-control" p:placeholder="Password" value="#{mbLogin.pass}" />
+            </div>
+            <h:messages/>
+            
+            <h:commandButton class="btn btn-primary btn-lg btn-block" value="Ingresar" action="#{mbLogin.login()}"/>
+        </div>
+      </h:form>
+
+    </div>
+
+
+  </h:body>
+</html>
+
+
