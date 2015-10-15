@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,9 +41,11 @@ public class MbSession {
     {
         httpServletRequest.getSession().removeAttribute("sessionUSuario");
         facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sesión cerrada correctamente", null);
-            faceContext.addMessage(null, facesMessage);
+        faceContext.addMessage(null, facesMessage);
         return "login.xhtml";
     }
+    
+    
     
     public String getUsuario() {
         return usuario;

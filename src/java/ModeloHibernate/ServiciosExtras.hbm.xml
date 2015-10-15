@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 13-10-2015 19:21:47 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14-10-2015 20:08:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ModeloHibernate.ServiciosExtras" table="SERVICIOS_EXTRAS" schema="PORTAFOLIO" optimistic-lock="version">
         <id name="idServExt" type="big_decimal">
             <column name="ID_SERV_EXT" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="hoteles" class="ModeloHibernate.Hoteles" fetch="select">
             <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
