@@ -2,7 +2,7 @@ package ModeloHibernate;
 // Generated 14-10-2015 20:08:51 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,23 +12,23 @@ import java.util.Set;
 public class ServiciosExtras  implements java.io.Serializable {
 
 
-     private BigDecimal idServExt;
+     private int idServExt;
      private Hoteles hoteles;
      private String nombreServExt;
-     private BigDecimal valorDiario;
+     private int valorDiario;
      private Set reservaServExts = new HashSet(0);
 
     public ServiciosExtras() {
     }
 
 	
-    public ServiciosExtras(BigDecimal idServExt, Hoteles hoteles, String nombreServExt, BigDecimal valorDiario) {
+    public ServiciosExtras(int idServExt, Hoteles hoteles, String nombreServExt, int valorDiario) {
         this.idServExt = idServExt;
         this.hoteles = hoteles;
         this.nombreServExt = nombreServExt;
         this.valorDiario = valorDiario;
     }
-    public ServiciosExtras(BigDecimal idServExt, Hoteles hoteles, String nombreServExt, BigDecimal valorDiario, Set reservaServExts) {
+    public ServiciosExtras(int idServExt, Hoteles hoteles, String nombreServExt, int valorDiario, Set reservaServExts) {
        this.idServExt = idServExt;
        this.hoteles = hoteles;
        this.nombreServExt = nombreServExt;
@@ -36,11 +36,11 @@ public class ServiciosExtras  implements java.io.Serializable {
        this.reservaServExts = reservaServExts;
     }
    
-    public BigDecimal getIdServExt() {
+    public int getIdServExt() {
         return this.idServExt;
     }
     
-    public void setIdServExt(BigDecimal idServExt) {
+    public void setIdServExt(int idServExt) {
         this.idServExt = idServExt;
     }
     public Hoteles getHoteles() {
@@ -57,11 +57,11 @@ public class ServiciosExtras  implements java.io.Serializable {
     public void setNombreServExt(String nombreServExt) {
         this.nombreServExt = nombreServExt;
     }
-    public BigDecimal getValorDiario() {
+    public int getValorDiario() {
         return this.valorDiario;
     }
     
-    public void setValorDiario(BigDecimal valorDiario) {
+    public void setValorDiario(int valorDiario) {
         this.valorDiario = valorDiario;
     }
     public Set getReservaServExts() {

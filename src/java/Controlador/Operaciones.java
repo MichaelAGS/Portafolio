@@ -5,7 +5,9 @@
  */
 package Controlador;
 
+import ModeloHibernate.Hoteles;
 import ModeloHibernate.Perfil;
+import ModeloHibernate.ServiciosExtras;
 import ModeloHibernate.Usuario;
 import java.math.BigDecimal;
 import java.util.List;
@@ -51,6 +53,8 @@ public class Operaciones {
         return variable;
         
     }
+    //************************************************************************************************************
+    //******************************************************INSERTAR PERFIL******************************************************
     public boolean validarTipoPer(Perfil per){
         SessionFactory sesion = NewHibernateUtil.getSessionFactory();
         Session session;
@@ -112,6 +116,69 @@ public class Operaciones {
         return variable;
         
     }
+    //************************************************************************************************************
+    //*************************************SERVICIOS EXTRAS******************************************************
+    public boolean validarServExt(ServiciosExtras serEx){
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Criteria crit = session.createCriteria(ServiciosExtras.class);
+        
+        List<ServiciosExtras> resulset = crit.list();
+        
+        boolean variable = false;
+        
+        for(ServiciosExtras serExt : resulset){
+            
+            if(serExt.getNombreServExt().equals(serEx.getNombreServExt()))
+            {
+                variable = true;
+                break;
+            }
+            else
+            {
+                variable = false;
+            }
+            
+        }
+            session.close();
+        
+            return variable;
+    }
+    
+    public boolean insertarSerExt(ServiciosExtras serEx){
+        
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        
+        
+        
+        
+        
+        boolean variable = false;
+        
+        
+            
+            if(validarServExt(serEx)== false)//admin con super user
+            {
+                Transaction tx = session.beginTransaction();
+                session.save(serEx);
+                tx.commit();
+                variable = true;
+                
+                
+            }
+            else
+            {
+                variable = false;
+            }
+            
+        
+        session.close();
+        return variable;
+        
+    }
     
     /*public boolean insertProc(int id, String tipo_per){
         
@@ -142,4 +209,26 @@ public class Operaciones {
 	Perfil perfil = (Perfil)result.get(i);
 	System.out.println(perfil.);
     }*/
+    
+    
+    
+    public List<Hoteles> listaHoteles(){
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Criteria crit = session.createCriteria(Hoteles.class);
+        Transaction tx = null;// es importante hacer esta WEA NO SE POR QUE PERO LO HICE Y FUNCIONO, ERROR NO SOPORTA NO SE QUE CHUCHA
+        List<Hoteles> listado = null;
+        try {
+            tx = session.beginTransaction();
+            listado = crit.list();// SUPUESTAMENTE LE ASIGNO TODO LO QUE VIENE DE LA TABLA HOTLES EN UNA VARIABLE DE TIPO LISTA<HOTELES>
+            tx.commit();
+        } catch (Exception e) {
+            session.beginTransaction().rollback();
+        }
+        
+        return listado;
+        
+    }
+    
 }
