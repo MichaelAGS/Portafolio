@@ -4,17 +4,17 @@
 <!-- Generated 14-10-2015 20:08:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ModeloHibernate.ServiciosExtras" table="SERVICIOS_EXTRAS" schema="PORTAFOLIO" optimistic-lock="version">
-        <id name="idServExt" type="big_decimal">
+        <id name="idServExt" type="integer">
             <column name="ID_SERV_EXT" precision="22" scale="0" />
             <generator class="increment" />
         </id>
-        <many-to-one name="hoteles" class="ModeloHibernate.Hoteles" fetch="select">
+        <many-to-one name="hoteles" class="ModeloHibernate.Hoteles" fetch="join">
             <column name="ID_HOTEL" precision="22" scale="0" not-null="true" />
         </many-to-one>
         <property name="nombreServExt" type="string">
             <column name="NOMBRE_SERV_EXT" length="50" not-null="true" />
         </property>
-        <property name="valorDiario" type="big_decimal">
+        <property name="valorDiario" type="integer">
             <column name="VALOR_DIARIO" precision="22" scale="0" not-null="true" />
         </property>
         <set name="reservaServExts" table="RLT_RES_SERV_EXT" inverse="false" lazy="true" fetch="select">

@@ -2,7 +2,7 @@ package ModeloHibernate;
 // Generated 14-10-2015 20:08:51 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,11 +12,11 @@ import java.util.Set;
 public class Hoteles  implements java.io.Serializable {
 
 
-     private BigDecimal idHotel;
+     private int idHotel;
      private String nombreHotel;
-     private BigDecimal nroEstrellas;
+     private int nroEstrellas;
      private String direccion;
-     private BigDecimal cantidadHabitaciones;
+     private int cantidadHabitaciones;
      private Set paises = new HashSet(0);
      private Set ciudads = new HashSet(0);
      private Set menus = new HashSet(0);
@@ -27,14 +27,14 @@ public class Hoteles  implements java.io.Serializable {
     }
 
 	
-    public Hoteles(BigDecimal idHotel, String nombreHotel, BigDecimal nroEstrellas, String direccion, BigDecimal cantidadHabitaciones) {
+    public Hoteles(int idHotel, String nombreHotel, int nroEstrellas, String direccion, int cantidadHabitaciones) {
         this.idHotel = idHotel;
         this.nombreHotel = nombreHotel;
         this.nroEstrellas = nroEstrellas;
         this.direccion = direccion;
         this.cantidadHabitaciones = cantidadHabitaciones;
     }
-    public Hoteles(BigDecimal idHotel, String nombreHotel, BigDecimal nroEstrellas, String direccion, BigDecimal cantidadHabitaciones, Set paises, Set ciudads, Set menus, Set serviciosExtrases, Set habitacioneses) {
+    public Hoteles(int idHotel, String nombreHotel, int nroEstrellas, String direccion, int cantidadHabitaciones, Set paises, Set ciudads, Set menus, Set serviciosExtrases, Set habitacioneses) {
        this.idHotel = idHotel;
        this.nombreHotel = nombreHotel;
        this.nroEstrellas = nroEstrellas;
@@ -47,11 +47,11 @@ public class Hoteles  implements java.io.Serializable {
        this.habitacioneses = habitacioneses;
     }
    
-    public BigDecimal getIdHotel() {
+    public int getIdHotel() {
         return this.idHotel;
     }
     
-    public void setIdHotel(BigDecimal idHotel) {
+    public void setIdHotel(int idHotel) {
         this.idHotel = idHotel;
     }
     public String getNombreHotel() {
@@ -61,11 +61,11 @@ public class Hoteles  implements java.io.Serializable {
     public void setNombreHotel(String nombreHotel) {
         this.nombreHotel = nombreHotel;
     }
-    public BigDecimal getNroEstrellas() {
+    public int getNroEstrellas() {
         return this.nroEstrellas;
     }
     
-    public void setNroEstrellas(BigDecimal nroEstrellas) {
+    public void setNroEstrellas(int nroEstrellas) {
         this.nroEstrellas = nroEstrellas;
     }
     public String getDireccion() {
@@ -75,11 +75,11 @@ public class Hoteles  implements java.io.Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    public BigDecimal getCantidadHabitaciones() {
+    public int getCantidadHabitaciones() {
         return this.cantidadHabitaciones;
     }
     
-    public void setCantidadHabitaciones(BigDecimal cantidadHabitaciones) {
+    public void setCantidadHabitaciones(int cantidadHabitaciones) {
         this.cantidadHabitaciones = cantidadHabitaciones;
     }
     public Set getPaises() {

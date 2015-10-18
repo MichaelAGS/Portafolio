@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        
+    
+        
+        <ui:composition template="./Layout/layout.xhtml">
+            
+        
+            <ui:define name="content">
+                
+            <section id="main-content">
+                <section class="wrapper">
+		    <div class="row">
+			<div class="col-lg-12">
+                            <h3 class="page-header"><i class="fa fa-files-o"></i> Servicios extra</h3>
+                            <ol class="breadcrumb">
+				<li><i class="fa fa-home"></i><a href="index.xhtml">Inicio</a></li>
+				<li><i class="icon_document_alt"></i>Forms</li>
+				<li><i class="fa fa-files-o"></i>Modificar Servicio</li>
+                            </ol>
+			</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    Ingreso de servicios extra
+                                </header>
+                                <div class="panel-body">
+                                    <div class="form">
+                                        <h:form class="form-validate form-horizontal" id="feedback_form">
+                                            <p:dataTable id="user" var="servicio" value="#{mbServicioExtra.servicios}">
+                                                <p:column headerText="ID" class="table-advance">
+                                                    <h:outputText value="#{servicio.idServExt}" />
+                                                </p:column>
+                                                
+                                                <p:column headerText="Nombre Servicio" class="table-advance">
+                                                    <h:outputText value="#{servicio.nombreServExt}" />
+                                                </p:column>
+                                                
+                                                <p:column headerText="Valor" class="table-advance">
+                                                    <h:outputText value="#{servicio.valorDiario}" />
+                                                </p:column> 
+                                                
+                                                <p:column headerText="Hotel" class="table-advance">
+                                                    <h:outputText value="#{servicio.hoteles.nombreHotel}" />
+                                                </p:column> 
+                                                
+                                            </p:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    
+                    
+                </section>
+            </section>    
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

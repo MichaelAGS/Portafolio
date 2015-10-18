@@ -118,7 +118,7 @@ public class Operaciones {
     }
     //************************************************************************************************************
     //*************************************SERVICIOS EXTRAS******************************************************
-    public boolean validarServExt(ServiciosExtras serEx){
+    /*public boolean validarServExt(ServiciosExtras serEx){
         SessionFactory sesion = NewHibernateUtil.getSessionFactory();
         Session session;
         session = sesion.openSession();
@@ -144,7 +144,7 @@ public class Operaciones {
             session.close();
         
             return variable;
-    }
+    }*/
     
     public boolean insertarSerExt(ServiciosExtras serEx){
         
@@ -152,29 +152,25 @@ public class Operaciones {
         Session session;
         session = sesion.openSession();
         
+        boolean variable;
         
-        
-        
-        
-        boolean variable = false;
-        
-        
-            
-            if(validarServExt(serEx)== false)//admin con super user
-            {
-                Transaction tx = session.beginTransaction();
+            /*if(validarServExt(serEx)== false)//admin con super user
+            {*/
+        try {
+            Transaction tx = session.beginTransaction();
                 session.save(serEx);
                 tx.commit();
                 variable = true;
+        } catch (Exception e) {
+            variable = false;
+            session.beginTransaction().rollback();
+        }
                 
-                
-            }
+            /*}
             else
             {
                 variable = false;
-            }
-            
-        
+            }*/
         session.close();
         return variable;
         
@@ -219,6 +215,26 @@ public class Operaciones {
         Criteria crit = session.createCriteria(Hoteles.class);
         Transaction tx = null;// es importante hacer esta WEA NO SE POR QUE PERO LO HICE Y FUNCIONO, ERROR NO SOPORTA NO SE QUE CHUCHA
         List<Hoteles> listado = null;
+        try {
+            tx = session.beginTransaction();
+            listado = crit.list();// SUPUESTAMENTE LE ASIGNO TODO LO QUE VIENE DE LA TABLA HOTLES EN UNA VARIABLE DE TIPO LISTA<HOTELES>
+            tx.commit();
+        } catch (Exception e) {
+            session.beginTransaction().rollback();
+        }
+        
+        return listado;
+        
+    }
+    
+    
+    public List<ServiciosExtras> listaServicios(){
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Criteria crit = session.createCriteria(ServiciosExtras.class);
+        Transaction tx = null;// es importante hacer esta WEA NO SE POR QUE PERO LO HICE Y FUNCIONO, ERROR NO SOPORTA NO SE QUE CHUCHA
+        List<ServiciosExtras> listado = null;
         try {
             tx = session.beginTransaction();
             listado = crit.list();// SUPUESTAMENTE LE ASIGNO TODO LO QUE VIENE DE LA TABLA HOTLES EN UNA VARIABLE DE TIPO LISTA<HOTELES>

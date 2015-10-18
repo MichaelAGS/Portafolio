@@ -8,6 +8,7 @@ package managedbean;
 import Controlador.Operaciones;
 import ModeloHibernate.ServiciosExtras;
 import ModeloHibernate.Hoteles;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -23,35 +24,59 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @RequestScoped
-public class MbServicioExtra {
+public class MbServicioExtra implements  java.io.Serializable{
 
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage facesMessage;
     private String mensajeErrorNombre;
     private int idServicio;
-    private Hoteles hotel;
     private String nombreServicio;
     private int valorDiario;
-    private String nombreHotel;
+    
     private List<SelectItem> selectOneMenuNombreHotel;
+    private List<ServiciosExtras> servicios;
+    private ServiciosExtras selectedServExt;
+
     
+        
+    public List<ServiciosExtras> getServicios() {
+        this.servicios = oper.listaServicios();
+        return servicios;
+    }
+
+    public void setServicios(List<ServiciosExtras> servicios) {
+        this.servicios = servicios;
+    }
+
+    public ServiciosExtras getSelectedServExt() {
+        return selectedServExt;
+    }
+
+    public void setSelectedServExt(ServiciosExtras selectedServExt) {
+        this.selectedServExt = selectedServExt;
+    }
     
-    
+      
     public MbServicioExtra() {
         faceContext = FacesContext.getCurrentInstance();
         httpServletRequest =(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        this.selectedServExt = new ServiciosExtras();
+        
     }
 
     public List<SelectItem> getSelectOneMenuNombreHotel() {// get de la variable selectonemenunombrehotel creo que esta wea pude hacerla en operaciones pero no estoy seguro xD lo weno que funca
         this.selectOneMenuNombreHotel = new ArrayList<SelectItem>();// esta wea dice regundante yo pensé lo mismo pero asi funca no tocar ctm xD
         List<Hoteles> hoteles = oper.listaHoteles();// llamo al metodo que retorna una lista y lo asigno en hoteles(lista)
         for (Hoteles hotel : hoteles) {//"foreach" que deja acceder a las variables del obj del metodo en operaciones creo xD
-            SelectItem selectItem = new SelectItem(hotel.getNombreHotel());// se debe crear el obj para poder usar add lo vi en una pagina qla que ahora no encuentro xD
+            SelectItem selectItem = new SelectItem(hotel.getIdHotel(),hotel.getNombreHotel());// se debe crear el obj para poder usar add lo vi en una pagina qla que ahora no encuentro xD
             this.selectOneMenuNombreHotel.add(selectItem);//esta wea agrega a la variable que es llamada en el xhtml ingresarServicios
         }
         return selectOneMenuNombreHotel;// pd: esta wea creo que se hace aquí por que lo carga altoque cuando ingresa a la pagina pero no estoy seguro xD
     }
+
+    
+    
 
     public void setSelectOneMenuNombreHotel(List<SelectItem> selectOneMenuNombreHotel) {
         this.selectOneMenuNombreHotel = selectOneMenuNombreHotel;
@@ -90,19 +115,13 @@ public class MbServicioExtra {
         this.valorDiario = valorDiario;
     }
 
-    public String getNombreHotel() {
-        return nombreHotel;
-    }
-
-    public void setNombreHotel(String nombreHotel) {
-        this.nombreHotel = nombreHotel;
-    }
+    
     
     Operaciones oper = new Operaciones();
     boolean respuesta = false;
     public void insertar()
     {
-        ServiciosExtras serExt = new ServiciosExtras(idServicio, hotel, nombreServicio, valorDiario);
+        ServiciosExtras serExt = new ServiciosExtras(getIdServicio(), getSelectedServExt().getHoteles(), getNombreServicio(), getValorDiario());
         respuesta = oper.insertarSerExt(serExt);
         if(respuesta == true){
             mensajeErrorNombre = "Ingresado correctamente";
