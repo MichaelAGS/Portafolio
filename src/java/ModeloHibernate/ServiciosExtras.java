@@ -21,6 +21,7 @@ public class ServiciosExtras  implements java.io.Serializable {
      private Set reservaServExts = new HashSet(0);
 
     public ServiciosExtras() {
+        this.idServExt = 0;
         this.hoteles = new Hoteles();
         
     }

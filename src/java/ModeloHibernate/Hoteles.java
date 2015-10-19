@@ -24,6 +24,7 @@ public class Hoteles  implements java.io.Serializable {
      private Set habitacioneses = new HashSet(0);
 
     public Hoteles() {
+        this.idHotel = 0;
     }
 
 	

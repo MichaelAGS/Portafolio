@@ -54,7 +54,7 @@ public class Operaciones {
         
     }
     //************************************************************************************************************
-    //******************************************************INSERTAR PERFIL******************************************************
+    //******************************************************CRUD PERFIL******************************************************
     public boolean validarTipoPer(Perfil per){
         SessionFactory sesion = NewHibernateUtil.getSessionFactory();
         Session session;
@@ -117,34 +117,8 @@ public class Operaciones {
         
     }
     //************************************************************************************************************
-    //*************************************SERVICIOS EXTRAS******************************************************
-    /*public boolean validarServExt(ServiciosExtras serEx){
-        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
-        Session session;
-        session = sesion.openSession();
-        Criteria crit = session.createCriteria(ServiciosExtras.class);
-        
-        List<ServiciosExtras> resulset = crit.list();
-        
-        boolean variable = false;
-        
-        for(ServiciosExtras serExt : resulset){
-            
-            if(serExt.getNombreServExt().equals(serEx.getNombreServExt()))
-            {
-                variable = true;
-                break;
-            }
-            else
-            {
-                variable = false;
-            }
-            
-        }
-            session.close();
-        
-            return variable;
-    }*/
+    //*************************************CRUD SERVICIOS EXTRAS******************************************************
+    
     
     public boolean insertarSerExt(ServiciosExtras serEx){
         
@@ -175,39 +149,6 @@ public class Operaciones {
         return variable;
         
     }
-    
-    /*public boolean insertProc(int id, String tipo_per){
-        
-        
-        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
-        Session session;
-        session = sesion.openSession();
-        Transaction t = session.beginTransaction();
-        
-        Query q = session.createSQLQuery("CALL ACTUALIZA_SALDO(:N_ID_PERFIL,:N_TIPO_PERFIL)").setParameter("N_ID_PERFIL", id).setParameter("N_TIPO_PERFIL", tipo_per);
-        q.executeUpdate();
-        t.commit();
-        return true;
-    }*/
-    
-    
-    /*public boolean insertarPerfil(){
-        
-        
-        Session session;
-        Query query = session.createSQLQuery(
-	"CALL ACTUALIZA_SALDO(:id_perfil,tipo_perfil)")
-	.addEntity(Perfil.class)
-	.setParameter("1", "megauser");
-			
-        List result = query.list();
-        for(int i=0; i<result.size(); i++){
-	Perfil perfil = (Perfil)result.get(i);
-	System.out.println(perfil.);
-    }*/
-    
-    
-    
     public List<Hoteles> listaHoteles(){
         SessionFactory sesion = NewHibernateUtil.getSessionFactory();
         Session session;
@@ -246,5 +187,131 @@ public class Operaciones {
         return listado;
         
     }
+    
+    public boolean modificarSerExt(ServiciosExtras serEx){
+        
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        
+        boolean variable;
+        
+            /*if(validarServExt(serEx)== false)//admin con super user
+            {*/
+        try {
+                Transaction tx = session.beginTransaction();
+                ServiciosExtras serExdb = (ServiciosExtras) session.load(ServiciosExtras.class, serEx.getIdServExt());
+                serExdb.setHoteles(serEx.getHoteles());
+                serExdb.setNombreServExt(serEx.getNombreServExt());
+                serExdb.setValorDiario(serEx.getValorDiario());
+                session.update(serExdb);
+                tx.commit();
+                variable = true;
+        } catch (Exception e) {
+            variable = false;
+            session.beginTransaction().rollback();
+        }
+                
+            /*}
+            else
+            {
+                variable = false;
+            }*/
+        session.close();
+        return variable;
+        
+    }
+    public boolean eliminarSerExt(Integer id){
+        
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        
+        boolean variable;
+        
+            /*if(validarServExt(serEx)== false)//admin con super user
+            {*/
+        try {
+                Transaction tx = session.beginTransaction();
+                ServiciosExtras serEx = (ServiciosExtras) session.load(ServiciosExtras.class, id);
+                session.delete(serEx);
+                tx.commit();
+                variable = true;
+        } catch (Exception e) {
+            variable = false;
+            session.beginTransaction().rollback();
+        }
+                
+            /*}
+            else
+            {
+                variable = false;
+            }*/
+        session.close();
+        return variable;
+        
+    }
+    
+    /*public boolean validarServExt(ServiciosExtras serEx){
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Criteria crit = session.createCriteria(ServiciosExtras.class);
+        
+        List<ServiciosExtras> resulset = crit.list();
+        
+        boolean variable = false;
+        
+        for(ServiciosExtras serExt : resulset){
+            
+            if(serExt.getNombreServExt().equals(serEx.getNombreServExt()))
+            {
+                variable = true;
+                break;
+            }
+            else
+            {
+                variable = false;
+            }
+            
+        }
+            session.close();
+        
+            return variable;
+    }*/
+    
+    /*public boolean insertProc(int id, String tipo_per){
+        
+        
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Transaction t = session.beginTransaction();
+        
+        Query q = session.createSQLQuery("CALL ACTUALIZA_SALDO(:N_ID_PERFIL,:N_TIPO_PERFIL)").setParameter("N_ID_PERFIL", id).setParameter("N_TIPO_PERFIL", tipo_per);
+        q.executeUpdate();
+        t.commit();
+        return true;
+    }*/
+    
+    
+    /*public boolean insertarPerfil(){
+        
+        
+        Session session;
+        Query query = session.createSQLQuery(
+	"CALL ACTUALIZA_SALDO(:id_perfil,tipo_perfil)")
+	.addEntity(Perfil.class)
+	.setParameter("1", "megauser");
+			
+        List result = query.list();
+        for(int i=0; i<result.size(); i++){
+	Perfil perfil = (Perfil)result.get(i);
+	System.out.println(perfil.);
+    }*/
+    
+    
+    
+    
     
 }

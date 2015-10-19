@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 
@@ -124,12 +125,41 @@ public class MbServicioExtra implements  java.io.Serializable{
         ServiciosExtras serExt = new ServiciosExtras(getIdServicio(), getSelectedServExt().getHoteles(), getNombreServicio(), getValorDiario());
         respuesta = oper.insertarSerExt(serExt);
         if(respuesta == true){
-            mensajeErrorNombre = "Ingresado correctamente";
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro Ingresado Exitosamente", null);
+            faceContext.addMessage(null, facesMessage);
         }
         else{
-            mensajeErrorNombre = "no se ingreso";
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, no se ha podido ingresar el registro", null);
+            faceContext.addMessage(null, facesMessage);
         }
                 
+    }
+    
+    public void modificarSerExt(ActionEvent actionEvent)
+    {
+        
+        respuesta = oper.modificarSerExt(selectedServExt);
+        if(respuesta == true){
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro modificado Exitosamente", null);
+            faceContext.addMessage(null, facesMessage);
+            
+        }
+        else{
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, no se ha podido modificar el registro", null);
+            faceContext.addMessage(null, facesMessage);
+        }
+                
+    }
+    
+    public void eliminarSerExt(ActionEvent actionEvent){
+        respuesta = oper.eliminarSerExt(selectedServExt.getIdServExt());
+        if (respuesta == true) {
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro Eliminado Exitosamente", null);
+            faceContext.addMessage(null, facesMessage);
+        }else{
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, no se ha podido eliminar el registro", null);
+            faceContext.addMessage(null, facesMessage);
+        }
     }
     
 }
