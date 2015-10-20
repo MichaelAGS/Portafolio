@@ -358,7 +358,29 @@ public class Operaciones {
     }
     
     
-    
+    public boolean eliminarUsuario(Integer id){
+        
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        
+        boolean variable;
+
+        try {
+                Transaction tx = session.beginTransaction();
+                Usuario us = (Usuario) session.load(Usuario.class, id);
+                session.delete(us);
+                tx.commit();
+                variable = true;
+        } catch (Exception e) {
+            variable = false;
+            session.beginTransaction().rollback();
+        }
+                
+        session.close();
+        return variable;
+        
+    }
     
     
 }

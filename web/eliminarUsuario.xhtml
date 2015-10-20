@@ -4,13 +4,78 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:z="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Eliminar Usuario</title>
     </h:head>
     <h:body>
         <ui:composition template="./Layout/layout.xhtml">
-            <z:spinner></z:spinner>
+            <ui:define name="content">
+                
+            <section id="main-content">
+                <section class="wrapper">
+		    <div class="row">
+			<div class="col-lg-12">
+                            <h3 class="page-header"><i class="fa fa-files-o"></i> Servicios extra</h3>
+                            <ol class="breadcrumb">
+				<li><i class="fa fa-home"></i><a href="index.xhtml">Inicio</a></li>
+				<li><i class="icon_document_alt"></i>Forms</li>
+				<li><i class="fa fa-files-o"></i>Modificar Servicio</li>
+                            </ol>
+			</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    Ingreso de servicios extra
+                                </header>
+                                <div class="panel-body">
+                                    <div class="form">
+                                        <p:growl id="msgs" showDetail="true">
+                                            <h:form id="formDataTable" class="form-validate form-horizontal">
+                                                <p:dataTable id="user" var="servicio" value="#{mbServicioExtra.servicios}">
+                                                    <p:column headerText="ID" class="table-advance">
+                                                        <h:outputText value="#{servicio.idServExt}" />
+                                                    </p:column>
+
+                                                    <p:column headerText="Nombre Servicio" class="table-advance">
+                                                        <h:outputText value="#{servicio.nombreServExt}" />
+                                                    </p:column>
+
+                                                    <p:column headerText="Valor" class="table-advance">
+                                                        <h:outputText value="#{servicio.valorDiario}" />
+                                                    </p:column> 
+
+                                                    <p:column headerText="Hotel" class="table-advance">
+                                                        <h:outputText value="#{servicio.hoteles.nombreHotel}" />
+                                                    </p:column> 
+
+                                                    <p:column headerText="Modificar" class="table-advance">
+                                                        <p:commandButton id="selectButton" update=":formDelete" oncomplete="PF('dialogBorrarServicio').show()" title="Eliminar" value="Eliminar">
+                                                            <f:setPropertyActionListener value="#{servicio}" target="#{mbServicioExtra.selectedServExt}" />
+                                                        </p:commandButton>
+                                                    </p:column>
+                                                </p:dataTable>
+                                            </h:form>
+                                            </p:growl>
+                                            <h:form id="formDelete">
+                                                <p:confirmDialog  message="¿Está seguro que quiere eliminar éste registro?" showEffect="fade" hideEffect="fade"
+                                                                 header="Eliminar Servicio" severity="alert" widgetVar="dialogBorrarServicio" >
+                                                    <h:inputHidden value="#{mbServicioExtra.selectedServExt.idServExt}"/>
+                                                    <p:commandButton id="confirm" value="Aceptar" update=":formDataTable" oncomplete="PF('dialogBorrarServicio').hide()" actionListener="#{mbServicioExtra.eliminarSerExt(actionEvent)}"  />
+                                                    <p:commandButton id="decline" value="Cancelar" oncomplete="PF('dialogBorrarServicio').hide()" />
+                                                </p:confirmDialog>
+                                            </h:form>
+                                        
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </section>    
+            </ui:define>
         </ui:composition>
     </h:body>
 </html>

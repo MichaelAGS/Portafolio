@@ -36,40 +36,78 @@
                                     <div class="form">
                                         <p:growl id="msgs" showDetail="true">
                                             <h:form id="formDataTable" class="form-validate form-horizontal">
-                                                <p:dataTable id="user" var="servicio" value="#{mbServicioExtra.servicios}">
-                                                    <p:column headerText="ID" class="table-advance">
-                                                        <h:outputText value="#{servicio.idServExt}" />
+                                                <p:dataTable id="user" var="usuario" value="#{mbUsuarios.usuarios}">
+                                                    <p:column headerText="Rut" class="table-striped">
+                                                        <h:outputText value="#{usuario.rutUsuario}" />
                                                     </p:column>
 
-                                                    <p:column headerText="Nombre Servicio" class="table-advance">
-                                                        <h:outputText value="#{servicio.nombreServExt}" />
+                                                    <p:column headerText="Nombre usuario" class="table-striped">
+                                                        <h:outputText value="#{usuario.nombreUsuario}" />
                                                     </p:column>
 
-                                                    <p:column headerText="Valor" class="table-advance">
-                                                        <h:outputText value="#{servicio.valorDiario}" />
+                                                    <p:column headerText="Apellido paterno" class="table-striped">
+                                                        <h:outputText value="#{usuario.apellidoPaterno}" />
                                                     </p:column> 
 
-                                                    <p:column headerText="Hotel" class="table-advance">
-                                                        <h:outputText value="#{servicio.hoteles.nombreHotel}" />
+                                                    <p:column headerText="Apellido materno" class="table-striped">
+                                                        <h:outputText value="#{usuario.apellidoMaterno}" />
                                                     </p:column> 
+                                                    
+                                                    <p:column headerText="Sexo" class="table-striped">
+                                                        <h:outputText value="#{usuario.sexo}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Nacionalidad" class="table-striped">
+                                                        <h:outputText value="#{usuario.nacionalidad}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Residencia" class="table-striped">
+                                                        <h:outputText value="#{usuario.residenciaActual}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Fecha nacimiento" class="table-striped">
+                                                        <h:outputText value="#{usuario.fechaNacimiento}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Región de nacimiento" class="table-striped">
+                                                        <h:outputText value="#{usuario.regionNacimiento}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Télefono" class="table-striped">
+                                                        <h:outputText value="#{usuario.telefono}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Email" class="table-striped">
+                                                        <h:outputText value="#{usuario.email}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Contraseña" class="table-striped">
+                                                        <h:outputText value="#{usuario.contraUsuario}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Perfil" class="table-striped">
+                                                        <h:outputText value="#{usuario.perfil.tipoPerfil}" />
+                                                    </p:column> 
+                                                    
 
-                                                    <p:column headerText="Modificar" class="table-advance">
-                                                        <p:commandButton id="selectButton" update=":formDelete" oncomplete="PF('dialogBorrarServicio').show()" title="Eliminar" value="Eliminar">
-                                                            <f:setPropertyActionListener value="#{servicio}" target="#{mbServicioExtra.selectedServExt}" />
+                                                    <p:column headerText="Eliminar" class="table-striped">
+                                                        <p:commandButton id="selectButton" update=":formDeleteUser" oncomplete="PF('dialogDeleteUser').show()" title="Eliminar" value="Eliminar">
+                                                            <f:setPropertyActionListener value="#{usuario}" target="#{mbUsuarios.selectedUsuario}" />
                                                         </p:commandButton>
                                                     </p:column>
                                                 </p:dataTable>
                                             </h:form>
                                             </p:growl>
-                                            <h:form id="formDelete">
+                                        
+                                        
+                                            <h:form id="formDeleteUser">
                                                 <p:confirmDialog  message="¿Está seguro que quiere eliminar éste registro?" showEffect="fade" hideEffect="fade"
-                                                                 header="Eliminar Servicio" severity="alert" widgetVar="dialogBorrarServicio" >
-                                                    <h:inputHidden value="#{mbServicioExtra.selectedServExt.idServExt}"/>
-                                                    <p:commandButton id="confirm" value="Aceptar" update=":formDataTable" oncomplete="PF('dialogBorrarServicio').hide()" actionListener="#{mbServicioExtra.eliminarSerExt(actionEvent)}"  />
-                                                    <p:commandButton id="decline" value="Cancelar" oncomplete="PF('dialogBorrarServicio').hide()" />
+                                                                 header="Eliminar Usuario" severity="alert" widgetVar="dialogDeleteUser" >
+                                                    <h:inputHidden value="#{mbUsuarios.selectedUsuario.idUsuario}"/>
+                                                    <p:commandButton id="confirm" value="Aceptar" update=":formDataTable" oncomplete="PF('dialogDeleteUser').hide()" actionListener="#{mbUsuarios.eliminarUser(actionEvent)}"  />
+                                                    <p:commandButton id="decline" value="Cancelar" oncomplete="PF('dialogDeleteUser').hide()" />
                                                 </p:confirmDialog>
                                             </h:form>
-                                        
                                     </div>
                                 </div>
                             </section>

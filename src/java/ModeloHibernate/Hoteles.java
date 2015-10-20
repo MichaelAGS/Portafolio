@@ -1,5 +1,5 @@
 package ModeloHibernate;
-// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
+// Generated 20-10-2015 3:44:20 by Hibernate Tools 4.3.1
 
 
 
@@ -24,7 +24,7 @@ public class Hoteles  implements java.io.Serializable {
      private Set habitacioneses = new HashSet(0);
 
     public Hoteles() {
-        this.idHotel = 0;
+        this.idHotel =0;
     }
 
 	
