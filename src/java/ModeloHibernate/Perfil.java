@@ -1,8 +1,8 @@
 package ModeloHibernate;
-// Generated 14-10-2015 20:08:51 by Hibernate Tools 4.3.1
+// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,29 +12,30 @@ import java.util.Set;
 public class Perfil  implements java.io.Serializable {
 
 
-     private BigDecimal idPerfil;
+     private int idPerfil;
      private String tipoPerfil;
      private Set usuarios = new HashSet(0);
 
     public Perfil() {
+        this.idPerfil = 0;
     }
 
 	
-    public Perfil(BigDecimal idPerfil, String tipoPerfil) {
+    public Perfil(int idPerfil, String tipoPerfil) {
         this.idPerfil = idPerfil;
         this.tipoPerfil = tipoPerfil;
     }
-    public Perfil(BigDecimal idPerfil, String tipoPerfil, Set usuarios) {
+    public Perfil(int idPerfil, String tipoPerfil, Set usuarios) {
        this.idPerfil = idPerfil;
        this.tipoPerfil = tipoPerfil;
        this.usuarios = usuarios;
     }
    
-    public BigDecimal getIdPerfil() {
+    public int getIdPerfil() {
         return this.idPerfil;
     }
     
-    public void setIdPerfil(BigDecimal idPerfil) {
+    public void setIdPerfil(int idPerfil) {
         this.idPerfil = idPerfil;
     }
     public String getTipoPerfil() {

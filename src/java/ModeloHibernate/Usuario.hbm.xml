@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-10-2015 20:08:53 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19-10-2015 19:45:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="ModeloHibernate.Usuario" table="USUARIO" schema="PORTAFOLIO" optimistic-lock="version">
-        <id name="idUsuario" type="big_decimal">
+    <class name="ModeloHibernate.Usuario" table="USUARIO" schema="DB_PORTAFOLIO" optimistic-lock="version">
+        <id name="idUsuario" type="integer">
             <column name="ID_USUARIO" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="perfil" class="ModeloHibernate.Perfil" fetch="select">
             <column name="ID_PERFIL" precision="22" scale="0" not-null="true" />
@@ -38,7 +38,7 @@
         <property name="regionNacimiento" type="string">
             <column name="REGION_NACIMIENTO" length="50" not-null="true" />
         </property>
-        <property name="telefono" type="big_decimal">
+        <property name="telefono" type="integer">
             <column name="TELEFONO" precision="22" scale="0" not-null="true" />
         </property>
         <property name="email" type="string">

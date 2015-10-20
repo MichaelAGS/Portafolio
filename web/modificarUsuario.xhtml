@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Modificar usuario</title>
+    </h:head>
+    <h:body>
+       
+         <ui:composition template="./Layout/layout.xhtml">
+
+            <ui:define name="content">
+                
+            <section id="main-content">
+                <section class="wrapper">
+		    <div class="row">
+			<div class="col-lg-12">
+                            <h3 class="page-header"><i class="fa fa-files-o"></i> Servicios extra</h3>
+                            <ol class="breadcrumb">
+				<li><i class="fa fa-home"></i><a href="index.xhtml">Inicio</a></li>
+				<li><i class="icon_document_alt"></i>Forms</li>
+				<li><i class="fa fa-files-o"></i>Modificar Servicio</li>
+                            </ol>
+			</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    Ingreso de servicios extra
+                                </header>
+                                <div class="panel-body">
+                                    <div class="form">
+                                        <p:growl id="msgs" showDetail="true">
+                                            <h:form id="formDataTable" class="form-validate form-horizontal">
+                                                <p:dataTable id="user" var="usuario" value="#{mbUsuarios.usuarios}">
+                                                    <p:column headerText="Rut" class="table-striped">
+                                                        <h:outputText value="#{usuario.rutUsuario}" />
+                                                    </p:column>
+
+                                                    <p:column headerText="Nombre usuario" class="table-striped">
+                                                        <h:outputText value="#{usuario.nombreUsuario}" />
+                                                    </p:column>
+
+                                                    <p:column headerText="Apellido paterno" class="table-striped">
+                                                        <h:outputText value="#{usuario.apellidoPaterno}" />
+                                                    </p:column> 
+
+                                                    <p:column headerText="Apellido materno" class="table-striped">
+                                                        <h:outputText value="#{usuario.apellidoMaterno}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Sexo" class="table-striped">
+                                                        <h:outputText value="#{usuario.sexo}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Nacionalidad" class="table-striped">
+                                                        <h:outputText value="#{usuario.nacionalidad}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Residencia" class="table-striped">
+                                                        <h:outputText value="#{usuario.residenciaActual}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Fecha nacimiento" class="table-striped">
+                                                        <h:outputText value="#{usuario.fechaNacimiento}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Región de nacimiento" class="table-striped">
+                                                        <h:outputText value="#{usuario.regionNacimiento}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Télefono" class="table-striped">
+                                                        <h:outputText value="#{usuario.telefono}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Email" class="table-striped">
+                                                        <h:outputText value="#{usuario.email}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Contraseña" class="table-striped">
+                                                        <h:outputText value="#{usuario.contraUsuario}" />
+                                                    </p:column> 
+                                                    
+                                                    <p:column headerText="Perfil" class="table-striped">
+                                                        <h:outputText value="#{usuario.perfil.tipoPerfil}" />
+                                                    </p:column> 
+                                                    
+
+                                                    <p:column headerText="Modificar" class="table-striped">
+                                                        <p:commandButton id="selectButton" update=":formUpdateUser" oncomplete="PF('dialogModificarUser').show()" title="Actualizar" value="Actualizar">
+                                                            <f:setPropertyActionListener value="#{usuario}" target="#{mbUsuarios.selectedUsuario}" />
+                                                        </p:commandButton>
+                                                    </p:column>
+                                                </p:dataTable>
+                                            </h:form>
+                                            <h:form id="formUpdateUser">
+                                                <p:dialog header="Modificar Usuario" widgetVar="dialogModificarUser" resizable="false" id="dlgUser" showEffect="fade" hideEffect="explode" modal="true">
+                                                    <h:panelGrid id="display" columns="2" cellpadding="5" style="margin:0 auto;">
+
+                                                        <h:outputText value="Rut"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.rutUsuario}"/>
+
+                                                        <h:outputText value="Apellido paterno"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.apellidoPaterno}"/>
+                                                        
+                                                        <h:outputText value="Apellido materno"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.apellidoMaterno}"/>
+
+                                                        <h:outputText value="sexo"/>
+                                                        <h:selectOneMenu id="sexo" value="#{mbUsuarios.selectedUsuario.sexo}" class="form-control m-bot15" ><!-- esta wea parece que captura el valor seleccionado y lo envia pal otro lao oe zi... revisar bien esta wea por que le puedo pasar el id solamente sin mostrarlo ver video de nueo-->
+                                                              <f:selectItem id="item0" itemLabel="-Seleccione Sexo-" itemValue="" />
+                                                              <f:selectItem id="item2" itemLabel="Masculino" itemValue="Masculino" />
+                                                              <f:selectItem id="item3" itemLabel="Femenino" itemValue="Femenino" />
+                                                        </h:selectOneMenu>
+                                                        
+                                                        <h:outputText value="Nacionalidad"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.nacionalidad}"/>
+                                                        
+                                                        <h:outputText value="Residencia"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.residenciaActual}"/>
+                                                        
+                                                        <h:outputText value="Fecha Nacimiento"/>
+                                                        <p:calendar  id="effect" style="" value="#{mbUsuarios.selectedUsuario.fechaNacimiento}" pattern="dd-MM-yy" effect="fold"/>
+                                                        
+                                                        <h:outputText value="Región de nacimiento"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.regionNacimiento}"/>
+                                                        
+                                                        <h:outputText value="Télefono"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.telefono}"/>
+                                                        
+                                                        <h:outputText value="Email"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.email}"/>
+                                                        
+                                                        <h:outputText value="Contraseña"/>
+                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.contraUsuario}"/>
+                                                        
+                                                        <h:selectOneMenu id="hoteles" value="#{mbUsuarios.selectedUsuario.perfil.idPerfil}" class="form-control m-bot15" ><!-- esta wea parece que captura el valor seleccionado y lo envia pal otro lao oe zi... revisar bien esta wea por que le puedo pasar el id solamente sin mostrarlo ver video de nueo-->
+                                                              <f:selectItem id="item1" itemLabel="-Seleccione Perfil-" itemValue="" />
+                                                              <f:selectItems value="#{mbUsuarios.selectOneMenuNombrePerfil}" /><!-- aqui le paso los item cargados desde el metodo get-->
+                                                        </h:selectOneMenu>
+                                                        
+                                                        <h:inputHidden value="#{mbUsuarios.selectedUsuario.idUsuario}"/>
+                                                        <f:facet name="footer">
+                                                            <p:commandButton id="btnModificarAceptar" update=":formDataTable" oncomplete="PF('dialogModificarUser').hide()" actionListener="#{mbUsuarios.modificarUsuarios(actionEvent)}" value="Guardar" title="Guardar" />
+                                                            <p:commandButton id="btnModificarCancelar"  oncomplete="PF('dialogModificarUser').hide()" value="Cancelar" title="Cancelar" />
+                                                        </f:facet>
+                                                    </h:panelGrid>
+                                                </p:dialog>
+                                            </h:form>
+                                        </p:growl>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </section>    
+            </ui:define>
+            
+        </ui:composition>
+        
+    </h:body>
+</html>
+

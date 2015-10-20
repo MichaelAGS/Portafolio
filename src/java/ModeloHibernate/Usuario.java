@@ -1,8 +1,8 @@
 package ModeloHibernate;
-// Generated 14-10-2015 20:08:51 by Hibernate Tools 4.3.1
+// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,7 @@ import java.util.Set;
 public class Usuario  implements java.io.Serializable {
 
 
-     private BigDecimal idUsuario;
+     private int idUsuario;
      private Perfil perfil;
      private String rutUsuario;
      private String nombreUsuario;
@@ -24,17 +24,19 @@ public class Usuario  implements java.io.Serializable {
      private String residenciaActual;
      private Date fechaNacimiento;
      private String regionNacimiento;
-     private BigDecimal telefono;
+     private int telefono;
      private String email;
      private String contraUsuario;
      private Set descuentos = new HashSet(0);
      private Set reservaHabitacions = new HashSet(0);
 
     public Usuario() {
+        this.idUsuario =0;
+        this.perfil = new Perfil();
     }
 
 	
-    public Usuario(BigDecimal idUsuario, Perfil perfil, String rutUsuario, String nombreUsuario, String apellidoPaterno, String apellidoMaterno, String sexo, String nacionalidad, String residenciaActual, Date fechaNacimiento, String regionNacimiento, BigDecimal telefono, String email, String contraUsuario) {
+    public Usuario(int idUsuario, Perfil perfil, String rutUsuario, String nombreUsuario, String apellidoPaterno, String apellidoMaterno, String sexo, String nacionalidad, String residenciaActual, Date fechaNacimiento, String regionNacimiento, int telefono, String email, String contraUsuario) {
         this.idUsuario = idUsuario;
         this.perfil = perfil;
         this.rutUsuario = rutUsuario;
@@ -50,7 +52,7 @@ public class Usuario  implements java.io.Serializable {
         this.email = email;
         this.contraUsuario = contraUsuario;
     }
-    public Usuario(BigDecimal idUsuario, Perfil perfil, String rutUsuario, String nombreUsuario, String apellidoPaterno, String apellidoMaterno, String sexo, String nacionalidad, String residenciaActual, Date fechaNacimiento, String regionNacimiento, BigDecimal telefono, String email, String contraUsuario, Set descuentos, Set reservaHabitacions) {
+    public Usuario(int idUsuario, Perfil perfil, String rutUsuario, String nombreUsuario, String apellidoPaterno, String apellidoMaterno, String sexo, String nacionalidad, String residenciaActual, Date fechaNacimiento, String regionNacimiento, int telefono, String email, String contraUsuario, Set descuentos, Set reservaHabitacions) {
        this.idUsuario = idUsuario;
        this.perfil = perfil;
        this.rutUsuario = rutUsuario;
@@ -69,11 +71,11 @@ public class Usuario  implements java.io.Serializable {
        this.reservaHabitacions = reservaHabitacions;
     }
    
-    public BigDecimal getIdUsuario() {
+    public int getIdUsuario() {
         return this.idUsuario;
     }
     
-    public void setIdUsuario(BigDecimal idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
     public Perfil getPerfil() {
@@ -146,11 +148,11 @@ public class Usuario  implements java.io.Serializable {
     public void setRegionNacimiento(String regionNacimiento) {
         this.regionNacimiento = regionNacimiento;
     }
-    public BigDecimal getTelefono() {
+    public int getTelefono() {
         return this.telefono;
     }
     
-    public void setTelefono(BigDecimal telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
     public String getEmail() {

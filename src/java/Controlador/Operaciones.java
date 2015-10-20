@@ -9,10 +9,10 @@ import ModeloHibernate.Hoteles;
 import ModeloHibernate.Perfil;
 import ModeloHibernate.ServiciosExtras;
 import ModeloHibernate.Usuario;
-import java.math.BigDecimal;
+
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -89,29 +89,20 @@ public class Operaciones {
         Session session;
         session = sesion.openSession();
         
-        
-        
-        
-        
         boolean variable = false;
         
-        
-            
-            if(validarTipoPer(perfil)== false)//admin con super user
+            if(validarTipoPer(perfil)== false)
             {
                 Transaction tx = session.beginTransaction();
                 session.save(perfil);
                 tx.commit();
-                variable = true;
-                
-                
+                variable = true;         
             }
             else
             {
                 variable = false;
             }
-            
-        
+           
         session.close();
         return variable;
         
@@ -127,9 +118,6 @@ public class Operaciones {
         session = sesion.openSession();
         
         boolean variable;
-        
-            /*if(validarServExt(serEx)== false)//admin con super user
-            {*/
         try {
             Transaction tx = session.beginTransaction();
                 session.save(serEx);
@@ -140,11 +128,6 @@ public class Operaciones {
             session.beginTransaction().rollback();
         }
                 
-            /*}
-            else
-            {
-                variable = false;
-            }*/
         session.close();
         return variable;
         
@@ -154,11 +137,11 @@ public class Operaciones {
         Session session;
         session = sesion.openSession();
         Criteria crit = session.createCriteria(Hoteles.class);
-        Transaction tx = null;// es importante hacer esta WEA NO SE POR QUE PERO LO HICE Y FUNCIONO, ERROR NO SOPORTA NO SE QUE CHUCHA
+        Transaction tx = null;
         List<Hoteles> listado = null;
         try {
             tx = session.beginTransaction();
-            listado = crit.list();// SUPUESTAMENTE LE ASIGNO TODO LO QUE VIENE DE LA TABLA HOTLES EN UNA VARIABLE DE TIPO LISTA<HOTELES>
+            listado = crit.list(); 
             tx.commit();
         } catch (Exception e) {
             session.beginTransaction().rollback();
@@ -168,17 +151,16 @@ public class Operaciones {
         
     }
     
-    
     public List<ServiciosExtras> listaServicios(){
         SessionFactory sesion = NewHibernateUtil.getSessionFactory();
         Session session;
         session = sesion.openSession();
         Criteria crit = session.createCriteria(ServiciosExtras.class);
-        Transaction tx = null;// es importante hacer esta WEA NO SE POR QUE PERO LO HICE Y FUNCIONO, ERROR NO SOPORTA NO SE QUE CHUCHA
+        Transaction tx = null;
         List<ServiciosExtras> listado = null;
         try {
             tx = session.beginTransaction();
-            listado = crit.list();// SUPUESTAMENTE LE ASIGNO TODO LO QUE VIENE DE LA TABLA HOTLES EN UNA VARIABLE DE TIPO LISTA<HOTELES>
+            listado = crit.list();
             tx.commit();
         } catch (Exception e) {
             session.beginTransaction().rollback();
@@ -196,8 +178,6 @@ public class Operaciones {
         
         boolean variable;
         
-            /*if(validarServExt(serEx)== false)//admin con super user
-            {*/
         try {
                 Transaction tx = session.beginTransaction();
                 ServiciosExtras serExdb = (ServiciosExtras) session.load(ServiciosExtras.class, serEx.getIdServExt());
@@ -211,12 +191,6 @@ public class Operaciones {
             variable = false;
             session.beginTransaction().rollback();
         }
-                
-            /*}
-            else
-            {
-                variable = false;
-            }*/
         session.close();
         return variable;
         
@@ -228,9 +202,7 @@ public class Operaciones {
         session = sesion.openSession();
         
         boolean variable;
-        
-            /*if(validarServExt(serEx)== false)//admin con super user
-            {*/
+
         try {
                 Transaction tx = session.beginTransaction();
                 ServiciosExtras serEx = (ServiciosExtras) session.load(ServiciosExtras.class, id);
@@ -242,29 +214,28 @@ public class Operaciones {
             session.beginTransaction().rollback();
         }
                 
-            /*}
-            else
-            {
-                variable = false;
-            }*/
         session.close();
         return variable;
         
     }
     
-    /*public boolean validarServExt(ServiciosExtras serEx){
+    //************************************************************************************************************
+    //*************************************CRUD Usuarios******************************************************
+ 
+    public boolean validarinsertarUsuario(Usuario usuario){
+        
         SessionFactory sesion = NewHibernateUtil.getSessionFactory();
         Session session;
         session = sesion.openSession();
-        Criteria crit = session.createCriteria(ServiciosExtras.class);
+        Criteria crit = session.createCriteria(Usuario.class);
         
-        List<ServiciosExtras> resulset = crit.list();
+        List<Usuario> resulset = crit.list();
         
         boolean variable = false;
         
-        for(ServiciosExtras serExt : resulset){
+        for(Usuario usu : resulset){
             
-            if(serExt.getNombreServExt().equals(serEx.getNombreServExt()))
+            if(usuario.getEmail().equals(usu.getEmail()))
             {
                 variable = true;
                 break;
@@ -275,40 +246,116 @@ public class Operaciones {
             }
             
         }
-            session.close();
         
-            return variable;
-    }*/
+        session.close();
+        
+        return variable;
+        
+    }
     
-    /*public boolean insertProc(int id, String tipo_per){
-        
+   public boolean insertarUsuario(Usuario usuario){
         
         SessionFactory sesion = NewHibernateUtil.getSessionFactory();
         Session session;
         session = sesion.openSession();
-        Transaction t = session.beginTransaction();
         
-        Query q = session.createSQLQuery("CALL ACTUALIZA_SALDO(:N_ID_PERFIL,:N_TIPO_PERFIL)").setParameter("N_ID_PERFIL", id).setParameter("N_TIPO_PERFIL", tipo_per);
-        q.executeUpdate();
-        t.commit();
-        return true;
-    }*/
+        boolean variable;
+        try {
+                if(validarinsertarUsuario(usuario)== false)
+                {
+
+                    Transaction tx = session.beginTransaction();
+                    session.save(usuario);
+                    tx.commit();
+                    variable = true;
+                }
+                else
+                {
+                    variable = false;
+                }
+            } catch (Exception e) {
+            variable = false;
+            session.beginTransaction().rollback();
+        }
+        session.close();
+        return variable;
+        
+    }
     
-    
-    /*public boolean insertarPerfil(){
-        
-        
+    public List<Perfil> listaPerfiles(){
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
         Session session;
-        Query query = session.createSQLQuery(
-	"CALL ACTUALIZA_SALDO(:id_perfil,tipo_perfil)")
-	.addEntity(Perfil.class)
-	.setParameter("1", "megauser");
-			
-        List result = query.list();
-        for(int i=0; i<result.size(); i++){
-	Perfil perfil = (Perfil)result.get(i);
-	System.out.println(perfil.);
-    }*/
+        session = sesion.openSession();
+        Criteria crit = session.createCriteria(Perfil.class);
+        Transaction tx = null;
+        List<Perfil> listado = null;
+        try {
+            tx = session.beginTransaction();
+            listado = crit.list();
+            tx.commit();
+        } catch (Exception e) {
+            session.beginTransaction().rollback();
+        }
+        
+        return listado;
+        
+    }
+    
+     public List<Usuario> listaUsuarios(){
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Criteria crit = session.createCriteria(Usuario.class);
+        Transaction tx = null;
+        List<Usuario> listado = null;
+        try {
+            tx = session.beginTransaction();
+            listado = crit.list();
+            tx.commit();
+        } catch (Exception e) {
+            session.beginTransaction().rollback();
+        }
+        
+        return listado;
+        
+    }
+     
+     
+     public boolean modificarUsuarios(Usuario usu){
+        
+        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        
+        boolean variable;
+        
+        try {
+                Transaction tx = session.beginTransaction();
+                Usuario usudb = (Usuario) session.load(Usuario.class, usu.getIdUsuario() );
+                usudb.setRutUsuario(usu.getRutUsuario());
+                usudb.setApellidoPaterno(usu.getApellidoPaterno());
+                usudb.setApellidoMaterno(usu.getApellidoMaterno());
+                usudb.setSexo(usu.getSexo());
+                usudb.setNacionalidad(usu.getNacionalidad());
+                usudb.setResidenciaActual(usu.getResidenciaActual());
+                usudb.setFechaNacimiento(usu.getFechaNacimiento());
+                usudb.setRegionNacimiento(usu.getRegionNacimiento());
+                usudb.setTelefono(usu.getTelefono());
+                usudb.setEmail(usu.getEmail());
+                usudb.setContraUsuario(usu.getContraUsuario());
+                usudb.setPerfil(usu.getPerfil());
+                
+                session.update(usudb);
+                tx.commit();
+                variable = true;
+        } catch (Exception e) {
+            variable = false;
+            session.beginTransaction().rollback();
+        }
+        session.close();
+        return variable;
+        
+    }
     
     
     

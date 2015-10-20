@@ -31,9 +31,7 @@ public class MbServicioExtra implements  java.io.Serializable{
     private final FacesContext faceContext;
     private FacesMessage facesMessage;
     private String mensajeErrorNombre;
-    private int idServicio;
-    private String nombreServicio;
-    private int valorDiario;
+  
     
     private List<SelectItem> selectOneMenuNombreHotel;
     private List<ServiciosExtras> servicios;
@@ -92,38 +90,12 @@ public class MbServicioExtra implements  java.io.Serializable{
         this.mensajeErrorNombre = mensajeErrorNombre;
     }
 
-    public int getIdServicio() {
-        return idServicio;
-    }
-
-    public void setIdServicio(int idServicio) {
-        this.idServicio = idServicio;
-    }
-
-    public String getNombreServicio() {
-        return nombreServicio;
-    }
-
-    public void setNombreServicio(String nombreServicio) {
-        this.nombreServicio = nombreServicio;
-    }
-
-    public int getValorDiario() {
-        return valorDiario;
-    }
-
-    public void setValorDiario(int valorDiario) {
-        this.valorDiario = valorDiario;
-    }
-
-    
-    
     Operaciones oper = new Operaciones();
     boolean respuesta = false;
     public void insertar()
     {
-        ServiciosExtras serExt = new ServiciosExtras(getIdServicio(), getSelectedServExt().getHoteles(), getNombreServicio(), getValorDiario());
-        respuesta = oper.insertarSerExt(serExt);
+        
+        respuesta = oper.insertarSerExt(selectedServExt);
         if(respuesta == true){
             facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro Ingresado Exitosamente", null);
             faceContext.addMessage(null, facesMessage);

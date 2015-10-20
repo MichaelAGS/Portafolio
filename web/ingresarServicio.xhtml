@@ -6,13 +6,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:body>
-        
-    
-        
+    <h:body>      
         <ui:composition template="./Layout/layout.xhtml">
-            
-        
+
             <ui:define name="content">
             <section id="main-content">
           <section class="wrapper">
@@ -40,13 +36,13 @@
                                       <div class="form-group ">
                                           <label for="nombre_servi" class="control-label col-lg-2">Nombre del servicio <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <h:inputText class="form-control" id="nombre_servi" value="#{mbServicioExtra.nombreServicio}" />
+                                              <h:inputText class="form-control" id="nombre_servi" value="#{mbServicioExtra.selectedServExt.nombreServExt}" />
                                           </div>
                                       </div>
                                       <div class="form-group ">
                                           <label for="valor" class="control-label col-lg-2">Valor <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <h:inputText class="form-control " id="valor" value="#{mbServicioExtra.valorDiario}"/>
+                                              <h:inputText class="form-control " id="valor" value="#{mbServicioExtra.selectedServExt.valorDiario}"/>
                                           </div>
                                       </div> 
                                       <div class="form-group">
