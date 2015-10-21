@@ -1,8 +1,8 @@
 package ModeloHibernate;
-// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
+// Generated 20-10-2015 20:40:28 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,26 +12,27 @@ import java.util.Set;
 public class Habitaciones  implements java.io.Serializable {
 
 
-     private BigDecimal idHabitacion;
+     private int idHabitacion;
      private Hoteles hoteles;
      private Pasajeros pasajeros;
      private TipoHabitacion tipoHabitacion;
-     private BigDecimal nroHabitacion;
-     private BigDecimal nroCamas;
-     private BigDecimal nroBanos;
-     private BigDecimal nroEstrellas;
+     private int nroHabitacion;
+     private int nroCamas;
+     private int nroBanos;
+     private int nroEstrellas;
      private String estado;
-     private BigDecimal valorDiario;
+     private int valorDiario;
      private Set reservaHabitacions = new HashSet(0);
      private Set promocionHabitacions = new HashSet(0);
      private Set registroInspeccions = new HashSet(0);
      private Set muebleses = new HashSet(0);
 
     public Habitaciones() {
+        this.idHabitacion = 0;
     }
 
 	
-    public Habitaciones(BigDecimal idHabitacion, Hoteles hoteles, Pasajeros pasajeros, TipoHabitacion tipoHabitacion, BigDecimal nroHabitacion, BigDecimal nroCamas, BigDecimal nroBanos, BigDecimal nroEstrellas, String estado, BigDecimal valorDiario) {
+    public Habitaciones(int idHabitacion, Hoteles hoteles, Pasajeros pasajeros, TipoHabitacion tipoHabitacion, int nroHabitacion, int nroCamas, int nroBanos, int nroEstrellas, String estado, int valorDiario) {
         this.idHabitacion = idHabitacion;
         this.hoteles = hoteles;
         this.pasajeros = pasajeros;
@@ -43,7 +44,7 @@ public class Habitaciones  implements java.io.Serializable {
         this.estado = estado;
         this.valorDiario = valorDiario;
     }
-    public Habitaciones(BigDecimal idHabitacion, Hoteles hoteles, Pasajeros pasajeros, TipoHabitacion tipoHabitacion, BigDecimal nroHabitacion, BigDecimal nroCamas, BigDecimal nroBanos, BigDecimal nroEstrellas, String estado, BigDecimal valorDiario, Set reservaHabitacions, Set promocionHabitacions, Set registroInspeccions, Set muebleses) {
+    public Habitaciones(int idHabitacion, Hoteles hoteles, Pasajeros pasajeros, TipoHabitacion tipoHabitacion, int nroHabitacion, int nroCamas, int nroBanos, int nroEstrellas, String estado, int valorDiario, Set reservaHabitacions, Set promocionHabitacions, Set registroInspeccions, Set muebleses) {
        this.idHabitacion = idHabitacion;
        this.hoteles = hoteles;
        this.pasajeros = pasajeros;
@@ -60,11 +61,11 @@ public class Habitaciones  implements java.io.Serializable {
        this.muebleses = muebleses;
     }
    
-    public BigDecimal getIdHabitacion() {
+    public int getIdHabitacion() {
         return this.idHabitacion;
     }
     
-    public void setIdHabitacion(BigDecimal idHabitacion) {
+    public void setIdHabitacion(int idHabitacion) {
         this.idHabitacion = idHabitacion;
     }
     public Hoteles getHoteles() {
@@ -88,32 +89,32 @@ public class Habitaciones  implements java.io.Serializable {
     public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
-    public BigDecimal getNroHabitacion() {
+    public int getNroHabitacion() {
         return this.nroHabitacion;
     }
     
-    public void setNroHabitacion(BigDecimal nroHabitacion) {
+    public void setNroHabitacion(int nroHabitacion) {
         this.nroHabitacion = nroHabitacion;
     }
-    public BigDecimal getNroCamas() {
+    public int getNroCamas() {
         return this.nroCamas;
     }
     
-    public void setNroCamas(BigDecimal nroCamas) {
+    public void setNroCamas(int nroCamas) {
         this.nroCamas = nroCamas;
     }
-    public BigDecimal getNroBanos() {
+    public int getNroBanos() {
         return this.nroBanos;
     }
     
-    public void setNroBanos(BigDecimal nroBanos) {
+    public void setNroBanos(int nroBanos) {
         this.nroBanos = nroBanos;
     }
-    public BigDecimal getNroEstrellas() {
+    public int getNroEstrellas() {
         return this.nroEstrellas;
     }
     
-    public void setNroEstrellas(BigDecimal nroEstrellas) {
+    public void setNroEstrellas(int nroEstrellas) {
         this.nroEstrellas = nroEstrellas;
     }
     public String getEstado() {
@@ -123,11 +124,11 @@ public class Habitaciones  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public BigDecimal getValorDiario() {
+    public int getValorDiario() {
         return this.valorDiario;
     }
     
-    public void setValorDiario(BigDecimal valorDiario) {
+    public void setValorDiario(int valorDiario) {
         this.valorDiario = valorDiario;
     }
     public Set getReservaHabitacions() {

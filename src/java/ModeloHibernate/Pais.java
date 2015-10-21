@@ -1,8 +1,8 @@
 package ModeloHibernate;
-// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
+// Generated 20-10-2015 20:40:28 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,34 +12,37 @@ import java.util.Set;
 public class Pais  implements java.io.Serializable {
 
 
-     private BigDecimal idPais;
+     private int idPais;
      private Hoteles hoteles;
      private String nombrePais;
      private Set empresas = new HashSet(0);
+     private Set pasajeroses = new HashSet(0);
      private Set proveedoreses = new HashSet(0);
 
     public Pais() {
+        this.idPais = 0;
     }
 
 	
-    public Pais(BigDecimal idPais, Hoteles hoteles, String nombrePais) {
+    public Pais(int idPais, Hoteles hoteles, String nombrePais) {
         this.idPais = idPais;
         this.hoteles = hoteles;
         this.nombrePais = nombrePais;
     }
-    public Pais(BigDecimal idPais, Hoteles hoteles, String nombrePais, Set empresas, Set proveedoreses) {
+    public Pais(int idPais, Hoteles hoteles, String nombrePais, Set empresas, Set pasajeroses, Set proveedoreses) {
        this.idPais = idPais;
        this.hoteles = hoteles;
        this.nombrePais = nombrePais;
        this.empresas = empresas;
+       this.pasajeroses = pasajeroses;
        this.proveedoreses = proveedoreses;
     }
    
-    public BigDecimal getIdPais() {
+    public int getIdPais() {
         return this.idPais;
     }
     
-    public void setIdPais(BigDecimal idPais) {
+    public void setIdPais(int idPais) {
         this.idPais = idPais;
     }
     public Hoteles getHoteles() {
@@ -62,6 +65,13 @@ public class Pais  implements java.io.Serializable {
     
     public void setEmpresas(Set empresas) {
         this.empresas = empresas;
+    }
+    public Set getPasajeroses() {
+        return this.pasajeroses;
+    }
+    
+    public void setPasajeroses(Set pasajeroses) {
+        this.pasajeroses = pasajeroses;
     }
     public Set getProveedoreses() {
         return this.proveedoreses;

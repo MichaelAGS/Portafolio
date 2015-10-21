@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Ingreso de pasajeros</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./Layout/layout.xhtml">
+            <ui:define name="content">
+                <section id="main-content">
+                    <section class="wrapper">
+                        <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-files-o"></i> Ingreso pasajeros</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-home"></i><a href="index.xhtml">Inicio</a></li>
+						<li><i class="icon_document_alt"></i>Pasajeros</li>
+						<li><i class="fa fa-files-o"></i>Ingresar pasajeros</li>
+					</ol>
+				</div>
+			</div>
+                            <!-- Form validations -->              
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        Ingreso de pasajeros
+                                    </header>
+                                    <div class="panel-body">
+                                        <div class="form">
+                                            <p:growl id="msgs" showDetail="true">
+                                                <h:form class="form-validate form-horizontal" id="feedback_form">
+                                                   <div class="form-group">
+                                                        <div class="col-lg-offset-2 col-lg-10">
+                                                            <h:selectOneMenu id="Paises" value="#{mbPasajeros.selectedPasajero.pais.idPais}" class="form-control m-bot15" ><!-- esta wea parece que captura el valor seleccionado y lo envia pal otro lao oe zi... revisar bien esta wea por que le puedo pasar el id solamente sin mostrarlo ver video de nueo-->
+                                                              <f:selectItem id="item1" itemLabel="-Seleccione País-" itemValue="" />
+                                                              <f:selectItems value="#{mbPasajeros.selectOneMenuPais}" /><!-- aqui le paso los item cargados desde el metodo get-->
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                    </div>  
+                                                    <div class="form-group ">
+                                                        <label for="rut" class="control-label col-lg-2">Rut <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText  required="true" class="form-control" id="rut" value="#{mbPasajeros.selectedPasajero.rutPas}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="nombre" class="control-label col-lg-2">Nombre <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText class="form-control" id="nombre" value="#{mbPasajeros.selectedPasajero.nombrePas}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="apellidoPat_user" class="control-label col-lg-2">Apellido Paterno <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText class="form-control" id="apellidoPat_user" value="#{mbPasajeros.selectedPasajero.apellidoPaterno}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="apellidoMat_user" class="control-label col-lg-2">Apellido Materno <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText class="form-control" id="apellidoMat_user" value="#{mbPasajeros.selectedPasajero.apellidoMaterno}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-lg-offset-2 col-lg-10">
+                                                            <h:selectOneMenu id="sexo" value="#{mbPasajeros.selectedPasajero.sexo}" class="form-control m-bot15" ><!-- esta wea parece que captura el valor seleccionado y lo envia pal otro lao oe zi... revisar bien esta wea por que le puedo pasar el id solamente sin mostrarlo ver video de nueo-->
+                                                              <f:selectItem id="item0" itemLabel="-Seleccione Sexo-" itemValue="" />
+                                                              <f:selectItem id="item2" itemLabel="Masculino" itemValue="Masculino" />
+                                                              <f:selectItem id="item3" itemLabel="Femenino" itemValue="Femenino" />
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="nacio_user" class="control-label col-lg-2">Nacionalidad <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText class="form-control" id="nacio_user" value="#{mbPasajeros.selectedPasajero.nacionalidad}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="resi_ac" class="control-label col-lg-2">Residencia Actual <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText class="form-control" id="resi_ac" value="#{mbPasajeros.selectedPasajero.residenciaActual}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="fecha" class="control-label col-lg-2">Fecha Nacimiento<span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <p:calendar  id="effect" style="" value="#{mbPasajeros.selectedPasajero.fechaNacimiento}" pattern="dd-MM-yy" effect="fold"/>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="form-group ">
+                                                        <label for="Reg_nac" class="control-label col-lg-2">Región Nacimiento <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText class="form-control " id="reg_nac" value="#{mbPasajeros.selectedPasajero.regionNacimiento}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="fono" class="control-label col-lg-2">Teléfono <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText class="form-control " id="fono" value="#{mbPasajeros.selectedPasajero.telefono}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="correo" class="control-label col-lg-2">E-Mail <span class="required">*</span></label>
+                                                        <div class="col-lg-10">
+                                                            <h:inputText class="form-control " id="correo" value="#{mbPasajeros.selectedPasajero.email}"/>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-lg-offset-2 col-lg-10">
+                                                            <p:commandButton update="msgs" class="btn btn-primary" action="#{mbPasajeros.insertarPasajero()}" value="Guardar"  />
+                                                            <p:commandButton id="btnModificarCancelar" value="Cancelar" title="Cancelar" />
+                                                        </div>
+                                                    </div>                                      
+                                                 </h:form>
+                                             </p:growl>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                            <!-- page end-->
+                    </section>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

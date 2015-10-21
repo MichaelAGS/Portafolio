@@ -1,8 +1,8 @@
 package ModeloHibernate;
-// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
+// Generated 20-10-2015 20:40:28 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,8 @@ import java.util.Set;
 public class Pasajeros  implements java.io.Serializable {
 
 
-     private BigDecimal idPas;
+     private int idPas;
+     private Pais pais;
      private String rutPas;
      private String nombrePas;
      private String apellidoPaterno;
@@ -23,15 +24,17 @@ public class Pasajeros  implements java.io.Serializable {
      private String residenciaActual;
      private Date fechaNacimiento;
      private String regionNacimiento;
-     private BigDecimal telefono;
+     private int telefono;
      private String email;
      private Set habitacioneses = new HashSet(0);
 
     public Pasajeros() {
+        this.idPas = 0;
+        this.pais = new Pais();
     }
 
 	
-    public Pasajeros(BigDecimal idPas, String rutPas, String nombrePas, String apellidoPaterno, String apellidoMaterno, String sexo, String nacionalidad, String residenciaActual, Date fechaNacimiento, String regionNacimiento, BigDecimal telefono, String email) {
+    public Pasajeros(int idPas, String rutPas, String nombrePas, String apellidoPaterno, String apellidoMaterno, String sexo, String nacionalidad, String residenciaActual, Date fechaNacimiento, String regionNacimiento, int telefono, String email) {
         this.idPas = idPas;
         this.rutPas = rutPas;
         this.nombrePas = nombrePas;
@@ -45,8 +48,9 @@ public class Pasajeros  implements java.io.Serializable {
         this.telefono = telefono;
         this.email = email;
     }
-    public Pasajeros(BigDecimal idPas, String rutPas, String nombrePas, String apellidoPaterno, String apellidoMaterno, String sexo, String nacionalidad, String residenciaActual, Date fechaNacimiento, String regionNacimiento, BigDecimal telefono, String email, Set habitacioneses) {
+    public Pasajeros(int idPas, Pais pais, String rutPas, String nombrePas, String apellidoPaterno, String apellidoMaterno, String sexo, String nacionalidad, String residenciaActual, Date fechaNacimiento, String regionNacimiento, int telefono, String email, Set habitacioneses) {
        this.idPas = idPas;
+       this.pais = pais;
        this.rutPas = rutPas;
        this.nombrePas = nombrePas;
        this.apellidoPaterno = apellidoPaterno;
@@ -61,12 +65,19 @@ public class Pasajeros  implements java.io.Serializable {
        this.habitacioneses = habitacioneses;
     }
    
-    public BigDecimal getIdPas() {
+    public int getIdPas() {
         return this.idPas;
     }
     
-    public void setIdPas(BigDecimal idPas) {
+    public void setIdPas(int idPas) {
         this.idPas = idPas;
+    }
+    public Pais getPais() {
+        return this.pais;
+    }
+    
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
     public String getRutPas() {
         return this.rutPas;
@@ -131,11 +142,11 @@ public class Pasajeros  implements java.io.Serializable {
     public void setRegionNacimiento(String regionNacimiento) {
         this.regionNacimiento = regionNacimiento;
     }
-    public BigDecimal getTelefono() {
+    public int getTelefono() {
         return this.telefono;
     }
     
-    public void setTelefono(BigDecimal telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
     public String getEmail() {

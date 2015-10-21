@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Eliminar Pasajero</title>
     </h:head>
     <h:body>
         <ui:composition template="./Layout/layout.xhtml">
@@ -18,11 +18,11 @@
                 <section class="wrapper">
 		    <div class="row">
 			<div class="col-lg-12">
-                            <h3 class="page-header"><i class="fa fa-files-o"></i> Servicios extra</h3>
+                            <h3 class="page-header"><i class="fa fa-files-o"></i> Pasajeros</h3>
                             <ol class="breadcrumb">
 				<li><i class="fa fa-home"></i><a href="index.xhtml">Inicio</a></li>
-				<li><i class="icon_document_alt"></i>Forms</li>
-				<li><i class="fa fa-files-o"></i>Modificar Servicio</li>
+				<li><i class="icon_document_alt"></i>Pasajeros</li>
+				<li><i class="fa fa-files-o"></i>Modificar Pasajeros</li>
                             </ol>
 			</div>
                     </div>
@@ -30,69 +30,67 @@
                         <div class="col-lg-12">
                             <section class="panel">
                                 <header class="panel-heading">
-                                    Ingreso de servicios extra
+                                    Eliminar Pasajeros
                                 </header>
                                 <div class="panel-body">
                                     <div class="form">
                                         <p:growl id="msgs" showDetail="true">
                                             <h:form id="formDataTable" class="form-validate form-horizontal">
-                                                <p:dataTable id="user" var="usuario" value="#{mbUsuarios.usuarios}">
+                                                <p:dataTable id="user" var="pasajero" value="#{mbPasajeros.pasajero}">
+                                                    
                                                     <p:column headerText="Rut" class="table-striped">
-                                                        <h:outputText value="#{usuario.rutUsuario}" />
+                                                        <h:outputText value="#{pasajero.rutPas}" />
                                                     </p:column>
 
                                                     <p:column headerText="Nombre usuario" class="table-striped">
-                                                        <h:outputText value="#{usuario.nombreUsuario}" />
+                                                        <h:outputText value="#{pasajero.nombrePas}" />
                                                     </p:column>
 
                                                     <p:column headerText="Apellido paterno" class="table-striped">
-                                                        <h:outputText value="#{usuario.apellidoPaterno}" />
+                                                        <h:outputText value="#{pasajero.apellidoPaterno}" />
                                                     </p:column> 
 
                                                     <p:column headerText="Apellido materno" class="table-striped">
-                                                        <h:outputText value="#{usuario.apellidoMaterno}" />
+                                                        <h:outputText value="#{pasajero.apellidoMaterno}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Sexo" class="table-striped">
-                                                        <h:outputText value="#{usuario.sexo}" />
+                                                        <h:outputText value="#{pasajero.sexo}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Nacionalidad" class="table-striped">
-                                                        <h:outputText value="#{usuario.nacionalidad}" />
+                                                        <h:outputText value="#{pasajero.nacionalidad}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Residencia" class="table-striped">
-                                                        <h:outputText value="#{usuario.residenciaActual}" />
+                                                        <h:outputText value="#{pasajero.residenciaActual}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Fecha nacimiento" class="table-striped">
-                                                        <h:outputText value="#{usuario.fechaNacimiento}" />
+                                                        <h:outputText value="#{pasajero.fechaNacimiento}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Región de nacimiento" class="table-striped">
-                                                        <h:outputText value="#{usuario.regionNacimiento}" />
+                                                        <h:outputText value="#{pasajero.regionNacimiento}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Télefono" class="table-striped">
-                                                        <h:outputText value="#{usuario.telefono}" />
+                                                        <h:outputText value="#{pasajero.telefono}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Email" class="table-striped">
-                                                        <h:outputText value="#{usuario.email}" />
+                                                        <h:outputText value="#{pasajero.email}" />
                                                     </p:column> 
                                                     
-                                                    <p:column headerText="Contraseña" class="table-striped">
-                                                        <h:outputText value="#{usuario.contraUsuario}" />
-                                                    </p:column> 
-                                                    
-                                                    <p:column headerText="Perfil" class="table-striped">
-                                                        <h:outputText value="#{usuario.perfil.tipoPerfil}" />
-                                                    </p:column> 
+                                                    <p:column headerText="País" class="table-striped">
+                                                        <h:outputText value="#{pasajero.pais.nombrePais}" />
+                                                    </p:column>
+                                                   
                                                     
 
                                                     <p:column headerText="Eliminar" class="table-striped">
-                                                        <p:commandButton id="selectButton" update=":formDeleteUser" oncomplete="PF('dialogDeleteUser').show()" title="Eliminar" value="Eliminar">
-                                                            <f:setPropertyActionListener value="#{usuario}" target="#{mbUsuarios.selectedUsuario}" />
+                                                        <p:commandButton id="selectButton" update=":formDeletePasajero" oncomplete="PF('dialogDeletePasajero').show()" title="Eliminar" value="Eliminar">
+                                                            <f:setPropertyActionListener value="#{pasajero}" target="#{mbPasajeros.selectedPasajero}" />
                                                         </p:commandButton>
                                                     </p:column>
                                                 </p:dataTable>
@@ -100,12 +98,12 @@
                                             </p:growl>
                                         
                                         
-                                            <h:form id="formDeleteUser">
+                                            <h:form id="formDeletePasajero">
                                                 <p:confirmDialog  message="¿Está seguro que quiere eliminar éste registro?" showEffect="fade" hideEffect="fade"
-                                                                 header="Eliminar Usuario" severity="alert" widgetVar="dialogDeleteUser" >
-                                                    <h:inputHidden value="#{mbUsuarios.selectedUsuario.idUsuario}"/>
-                                                    <p:commandButton id="confirm" value="Aceptar" update=":formDataTable" oncomplete="PF('dialogDeleteUser').hide()" actionListener="#{mbUsuarios.eliminarUser(actionEvent)}"  />
-                                                    <p:commandButton id="decline" value="Cancelar" oncomplete="PF('dialogDeleteUser').hide()" />
+                                                                 header="Eliminar Psajero" severity="alert" widgetVar="dialogDeletePasajero" >
+                                                    <h:inputHidden value="#{mbPasajeros.selectedPasajero.idPas}"/>
+                                                    <p:commandButton id="confirm" value="Aceptar" update=":formDataTable" oncomplete="PF('dialogDeletePasajero').hide()" actionListener="#{mbPasajeros.eliminarPasajeros(actionEvent)}"  />
+                                                    <p:commandButton id="decline" value="Cancelar" oncomplete="PF('dialogDeletePasajero').hide()" />
                                                 </p:confirmDialog>
                                             </h:form>
                                     </div>

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19-10-2015 19:45:53 by Hibernate Tools 4.3.1 -->
+<!-- Generated 20-10-2015 20:40:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ModeloHibernate.Habitaciones" table="HABITACIONES" schema="DB_PORTAFOLIO" optimistic-lock="version">
-        <id name="idHabitacion" type="big_decimal">
+        <id name="idHabitacion" type="integer">
             <column name="ID_HABITACION" precision="22" scale="0" />
             <generator class="assigned" />
         </id>
@@ -17,22 +17,22 @@
         <many-to-one name="tipoHabitacion" class="ModeloHibernate.TipoHabitacion" fetch="select">
             <column name="ID_TIPO_HAB" precision="22" scale="0" not-null="true" />
         </many-to-one>
-        <property name="nroHabitacion" type="big_decimal">
+        <property name="nroHabitacion" type="integer">
             <column name="NRO_HABITACION" precision="22" scale="0" not-null="true" />
         </property>
-        <property name="nroCamas" type="big_decimal">
+        <property name="nroCamas" type="integer">
             <column name="NRO_CAMAS" precision="22" scale="0" not-null="true" />
         </property>
-        <property name="nroBanos" type="big_decimal">
+        <property name="nroBanos" type="integer">
             <column name="NRO_BANOS" precision="22" scale="0" not-null="true" />
         </property>
-        <property name="nroEstrellas" type="big_decimal">
+        <property name="nroEstrellas" type="integer">
             <column name="NRO_ESTRELLAS" precision="22" scale="0" not-null="true" />
         </property>
         <property name="estado" type="string">
             <column name="ESTADO" length="50" not-null="true" />
         </property>
-        <property name="valorDiario" type="big_decimal">
+        <property name="valorDiario" type="integer">
             <column name="VALOR_DIARIO" precision="22" scale="0" not-null="true" />
         </property>
         <set name="reservaHabitacions" table="RESERVA_HABITACION" inverse="true" lazy="true" fetch="select">

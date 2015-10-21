@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Modificar usuario</title>
+        <title>Modificar Pasajeros</title>
     </h:head>
     <h:body>
        
@@ -18,11 +18,11 @@
                 <section class="wrapper">
 		    <div class="row">
 			<div class="col-lg-12">
-                            <h3 class="page-header"><i class="fa fa-files-o"></i> Servicios extra</h3>
+                            <h3 class="page-header"><i class="fa fa-files-o"></i> Pasajeros</h3>
                             <ol class="breadcrumb">
 				<li><i class="fa fa-home"></i><a href="index.xhtml">Inicio</a></li>
-				<li><i class="icon_document_alt"></i>Forms</li>
-				<li><i class="fa fa-files-o"></i>Modificar Servicio</li>
+				<li><i class="icon_document_alt"></i>Pasajeros</li>
+				<li><i class="fa fa-files-o"></i>Modificar Pasajeros</li>
                             </ol>
 			</div>
                     </div>
@@ -30,127 +30,122 @@
                         <div class="col-lg-12">
                             <section class="panel">
                                 <header class="panel-heading">
-                                    Ingreso de servicios extra
+                                    Modificación pasajeros
                                 </header>
                                 <div class="panel-body">
                                     <div class="form">
                                         <p:growl id="msgs" showDetail="true">
                                             <h:form id="formDataTable" class="form-validate form-horizontal">
-                                                <p:dataTable id="user" var="usuario" value="#{mbUsuarios.usuarios}">
+                                                <p:dataTable id="user" var="pasajero" value="#{mbPasajeros.pasajero}">
                                                     <p:column headerText="Rut" class="table-striped">
-                                                        <h:outputText value="#{usuario.rutUsuario}" />
+                                                        <h:outputText value="#{pasajero.rutPas}" />
                                                     </p:column>
 
                                                     <p:column headerText="Nombre usuario" class="table-striped">
-                                                        <h:outputText value="#{usuario.nombreUsuario}" />
+                                                        <h:outputText value="#{pasajero.nombrePas}" />
                                                     </p:column>
 
                                                     <p:column headerText="Apellido paterno" class="table-striped">
-                                                        <h:outputText value="#{usuario.apellidoPaterno}" />
+                                                        <h:outputText value="#{pasajero.apellidoPaterno}" />
                                                     </p:column> 
 
                                                     <p:column headerText="Apellido materno" class="table-striped">
-                                                        <h:outputText value="#{usuario.apellidoMaterno}" />
+                                                        <h:outputText value="#{pasajero.apellidoMaterno}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Sexo" class="table-striped">
-                                                        <h:outputText value="#{usuario.sexo}" />
+                                                        <h:outputText value="#{pasajero.sexo}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Nacionalidad" class="table-striped">
-                                                        <h:outputText value="#{usuario.nacionalidad}" />
+                                                        <h:outputText value="#{pasajero.nacionalidad}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Residencia" class="table-striped">
-                                                        <h:outputText value="#{usuario.residenciaActual}" />
+                                                        <h:outputText value="#{pasajero.residenciaActual}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Fecha nacimiento" class="table-striped">
-                                                        <h:outputText value="#{usuario.fechaNacimiento}" />
+                                                        <h:outputText value="#{pasajero.fechaNacimiento}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Región de nacimiento" class="table-striped">
-                                                        <h:outputText value="#{usuario.regionNacimiento}" />
+                                                        <h:outputText value="#{pasajero.regionNacimiento}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Télefono" class="table-striped">
-                                                        <h:outputText value="#{usuario.telefono}" />
+                                                        <h:outputText value="#{pasajero.telefono}" />
                                                     </p:column> 
                                                     
                                                     <p:column headerText="Email" class="table-striped">
-                                                        <h:outputText value="#{usuario.email}" />
+                                                        <h:outputText value="#{pasajero.email}" />
                                                     </p:column> 
                                                     
-                                                    <p:column headerText="Contraseña" class="table-striped">
-                                                        <h:outputText value="#{usuario.contraUsuario}" />
+                                                    <p:column headerText="País" class="table-striped">
+                                                        <h:outputText value="#{pasajero.pais.nombrePais}" />
                                                     </p:column> 
-                                                    
-                                                    <p:column headerText="Perfil" class="table-striped">
-                                                        <h:outputText value="#{usuario.perfil.tipoPerfil}" />
-                                                    </p:column> 
+ 
                                                     
 
                                                     <p:column headerText="Modificar" class="table-striped">
-                                                        <p:commandButton id="selectButton" update=":formUpdateUser" oncomplete="PF('dialogModificarUser').show()" title="Actualizar" value="Actualizar">
-                                                            <f:setPropertyActionListener value="#{usuario}" target="#{mbUsuarios.selectedUsuario}" />
+                                                        <p:commandButton id="selectButton" update=":formUpdatePasajero" oncomplete="PF('dialogModificarPasajero').show()" title="Actualizar" value="Actualizar">
+                                                            <f:setPropertyActionListener value="#{pasajero}" target="#{mbPasajeros.selectedPasajero}" />
                                                         </p:commandButton>
                                                     </p:column>
                                                 </p:dataTable>
                                             </h:form>
-                                            <h:form id="formUpdateUser">
-                                                <p:dialog header="Modificar Usuario" widgetVar="dialogModificarUser" resizable="false" id="dlgUser" showEffect="fade" hideEffect="explode" modal="true">
+                                            <h:form id="formUpdatePasajero">
+                                                <p:dialog header="Modificar Pasajero" widgetVar="dialogModificarPasajero" resizable="false" id="dlgUser" showEffect="fade" hideEffect="explode" modal="true">
                                                     <h:panelGrid id="display" columns="2" cellpadding="5" style="margin:0 auto;">
 
                                                         <h:outputText value="Rut"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.rutUsuario}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.rutPas}"/>
                                                         
                                                         <h:outputText value="Nombre"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.nombreUsuario}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.nombrePas}"/>
 
                                                         <h:outputText value="Apellido paterno"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.apellidoPaterno}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.apellidoPaterno}"/>
                                                         
                                                         <h:outputText value="Apellido materno"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.apellidoMaterno}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.apellidoMaterno}"/>
 
                                                         <h:outputText value="sexo"/>
-                                                        <h:selectOneMenu id="sexo" value="#{mbUsuarios.selectedUsuario.sexo}" class="form-control m-bot15" ><!-- esta wea parece que captura el valor seleccionado y lo envia pal otro lao oe zi... revisar bien esta wea por que le puedo pasar el id solamente sin mostrarlo ver video de nueo-->
+                                                        <h:selectOneMenu id="sexo" value="#{mbPasajeros.selectedPasajero.sexo}" class="form-control m-bot15" ><!-- esta wea parece que captura el valor seleccionado y lo envia pal otro lao oe zi... revisar bien esta wea por que le puedo pasar el id solamente sin mostrarlo ver video de nueo-->
                                                               <f:selectItem id="item0" itemLabel="-Seleccione Sexo-" itemValue="" />
                                                               <f:selectItem id="item2" itemLabel="Masculino" itemValue="Masculino" />
                                                               <f:selectItem id="item3" itemLabel="Femenino" itemValue="Femenino" />
                                                         </h:selectOneMenu>
                                                         
                                                         <h:outputText value="Nacionalidad"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.nacionalidad}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.nacionalidad}"/>
                                                         
                                                         <h:outputText value="Residencia"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.residenciaActual}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.residenciaActual}"/>
                                                         
                                                         <h:outputText value="Fecha Nacimiento"/>
-                                                        <p:calendar  id="effect" style="" value="#{mbUsuarios.selectedUsuario.fechaNacimiento}" pattern="dd-MM-yy" effect="fold"/>
+                                                        <p:calendar  id="effect" style="" value="#{mbPasajeros.selectedPasajero.fechaNacimiento}" pattern="dd-MM-yy" effect="fold"/>
                                                         
                                                         <h:outputText value="Región de nacimiento"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.regionNacimiento}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.regionNacimiento}"/>
                                                         
                                                         <h:outputText value="Télefono"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.telefono}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.telefono}"/>
                                                         
                                                         <h:outputText value="Email"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.email}"/>
+                                                        <h:inputText value="#{mbPasajeros.selectedPasajero.email}"/>
                                                         
-                                                        <h:outputText value="Contraseña"/>
-                                                        <h:inputText value="#{mbUsuarios.selectedUsuario.contraUsuario}"/>
+                                                     
+                                                        <h:outputText value="Paises"/>
+                                                        <h:selectOneMenu id="Paises" value="#{mbPasajeros.selectedPasajero.pais.idPais}" class="form-control m-bot15" ><!-- esta wea parece que captura el valor seleccionado y lo envia pal otro lao oe zi... revisar bien esta wea por que le puedo pasar el id solamente sin mostrarlo ver video de nueo-->
+                                                              <f:selectItem id="item1" itemLabel="-Seleccione País-" itemValue="" />
+                                                              <f:selectItems value="#{mbPasajeros.selectOneMenuPais}" /><!-- aqui le paso los item cargados desde el metodo get-->
+                                                            </h:selectOneMenu>
                                                         
-                                                        <h:outputText value="Hoteles"/>
-                                                        <h:selectOneMenu id="hoteles" value="#{mbUsuarios.selectedUsuario.perfil.idPerfil}" class="form-control m-bot15" ><!-- esta wea parece que captura el valor seleccionado y lo envia pal otro lao oe zi... revisar bien esta wea por que le puedo pasar el id solamente sin mostrarlo ver video de nueo-->
-                                                              <f:selectItem id="item1" itemLabel="-Seleccione Perfil-" itemValue="" />
-                                                              <f:selectItems value="#{mbUsuarios.selectOneMenuNombrePerfil}" /><!-- aqui le paso los item cargados desde el metodo get-->
-                                                        </h:selectOneMenu>
-                                                        
-                                                        <h:inputHidden value="#{mbUsuarios.selectedUsuario.idUsuario}"/>
+                                                        <h:inputHidden value="#{mbPasajeros.selectedPasajero.idPas}"/>
                                                         <f:facet name="footer">
-                                                            <p:commandButton id="btnModificarAceptar" update=":formDataTable" oncomplete="PF('dialogModificarUser').hide()" actionListener="#{mbUsuarios.modificarUsuarios(actionEvent)}" value="Guardar" title="Guardar" />
-                                                            <p:commandButton id="btnModificarCancelar"  oncomplete="PF('dialogModificarUser').hide()" value="Cancelar" title="Cancelar" />
+                                                            <p:commandButton id="btnModificarAceptar" update=":formDataTable" oncomplete="PF('dialogModificarPasajero').hide()" actionListener="#{mbPasajeros.modificarPasajero(actionEvent)}" value="Guardar" title="Guardar" />
+                                                            <p:commandButton id="btnModificarCancelar"  oncomplete="PF('dialogModificarPasajero').hide()" value="Cancelar" title="Cancelar" />
                                                         </f:facet>
                                                     </h:panelGrid>
                                                 </p:dialog>
@@ -169,4 +164,3 @@
         
     </h:body>
 </html>
-

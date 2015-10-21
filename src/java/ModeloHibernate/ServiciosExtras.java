@@ -1,5 +1,5 @@
 package ModeloHibernate;
-// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
+// Generated 20-10-2015 20:40:28 by Hibernate Tools 4.3.1
 
 
 
@@ -19,7 +19,7 @@ public class ServiciosExtras  implements java.io.Serializable {
      private Set reservaServExts = new HashSet(0);
 
     public ServiciosExtras() {
-        this.idServExt = 0;
+        this.idServExt=0;
         this.hoteles = new Hoteles();
     }
 

@@ -90,9 +90,6 @@ public class MbUsuarios implements  java.io.Serializable{
             facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, no se ha podido insertar el registro", null);
             faceContext.addMessage(null, facesMessage);
         }
-               
-        
-        
     }
     
      public void modificarUsuarios(ActionEvent actionEvent)
@@ -109,6 +106,18 @@ public class MbUsuarios implements  java.io.Serializable{
             faceContext.addMessage(null, facesMessage);
         }
                 
+    }
+     
+     
+      public void eliminarUser(ActionEvent actionEvent){
+        respuesta = oper.eliminarUsuario(selectedUsuario.getIdUsuario());
+        if (respuesta == true) {
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro Eliminado Exitosamente", null);
+            faceContext.addMessage(null, facesMessage);
+        }else{
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, no se ha podido eliminar el registro", null);
+            faceContext.addMessage(null, facesMessage);
+        }
     }
    
     

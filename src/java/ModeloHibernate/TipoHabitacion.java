@@ -1,8 +1,8 @@
 package ModeloHibernate;
-// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
+// Generated 20-10-2015 20:40:28 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,32 +12,33 @@ import java.util.Set;
 public class TipoHabitacion  implements java.io.Serializable {
 
 
-     private BigDecimal idTipoHab;
+     private int idTipoHab;
      private String nombreTipo;
-     private BigDecimal valorDiario;
+     private int valorDiario;
      private Set habitacioneses = new HashSet(0);
 
     public TipoHabitacion() {
+        this.idTipoHab = 0;
     }
 
 	
-    public TipoHabitacion(BigDecimal idTipoHab, String nombreTipo, BigDecimal valorDiario) {
+    public TipoHabitacion(int idTipoHab, String nombreTipo, int valorDiario) {
         this.idTipoHab = idTipoHab;
         this.nombreTipo = nombreTipo;
         this.valorDiario = valorDiario;
     }
-    public TipoHabitacion(BigDecimal idTipoHab, String nombreTipo, BigDecimal valorDiario, Set habitacioneses) {
+    public TipoHabitacion(int idTipoHab, String nombreTipo, int valorDiario, Set habitacioneses) {
        this.idTipoHab = idTipoHab;
        this.nombreTipo = nombreTipo;
        this.valorDiario = valorDiario;
        this.habitacioneses = habitacioneses;
     }
    
-    public BigDecimal getIdTipoHab() {
+    public int getIdTipoHab() {
         return this.idTipoHab;
     }
     
-    public void setIdTipoHab(BigDecimal idTipoHab) {
+    public void setIdTipoHab(int idTipoHab) {
         this.idTipoHab = idTipoHab;
     }
     public String getNombreTipo() {
@@ -47,11 +48,11 @@ public class TipoHabitacion  implements java.io.Serializable {
     public void setNombreTipo(String nombreTipo) {
         this.nombreTipo = nombreTipo;
     }
-    public BigDecimal getValorDiario() {
+    public int getValorDiario() {
         return this.valorDiario;
     }
     
-    public void setValorDiario(BigDecimal valorDiario) {
+    public void setValorDiario(int valorDiario) {
         this.valorDiario = valorDiario;
     }
     public Set getHabitacioneses() {

@@ -1,8 +1,8 @@
 package ModeloHibernate;
-// Generated 19-10-2015 19:45:52 by Hibernate Tools 4.3.1
+// Generated 20-10-2015 20:40:28 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,7 @@ import java.util.Set;
 public class ReservaServExt  implements java.io.Serializable {
 
 
-     private BigDecimal idResServ;
+     private int idResServ;
      private ReservaHabitacion reservaHabitacion;
      private Date fechaResServ;
      private Set serviciosExtrases = new HashSet(0);
@@ -22,23 +22,23 @@ public class ReservaServExt  implements java.io.Serializable {
     }
 
 	
-    public ReservaServExt(BigDecimal idResServ, ReservaHabitacion reservaHabitacion, Date fechaResServ) {
+    public ReservaServExt(int idResServ, ReservaHabitacion reservaHabitacion, Date fechaResServ) {
         this.idResServ = idResServ;
         this.reservaHabitacion = reservaHabitacion;
         this.fechaResServ = fechaResServ;
     }
-    public ReservaServExt(BigDecimal idResServ, ReservaHabitacion reservaHabitacion, Date fechaResServ, Set serviciosExtrases) {
+    public ReservaServExt(int idResServ, ReservaHabitacion reservaHabitacion, Date fechaResServ, Set serviciosExtrases) {
        this.idResServ = idResServ;
        this.reservaHabitacion = reservaHabitacion;
        this.fechaResServ = fechaResServ;
        this.serviciosExtrases = serviciosExtrases;
     }
    
-    public BigDecimal getIdResServ() {
+    public int getIdResServ() {
         return this.idResServ;
     }
     
-    public void setIdResServ(BigDecimal idResServ) {
+    public void setIdResServ(int idResServ) {
         this.idResServ = idResServ;
     }
     public ReservaHabitacion getReservaHabitacion() {
