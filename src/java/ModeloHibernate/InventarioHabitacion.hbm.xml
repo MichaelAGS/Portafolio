@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 20-10-2015 20:40:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="ModeloHibernate.InventarioHabitacion" table="INVENTARIO_HABITACION" schema="DB_PORTAFOLIO" optimistic-lock="version">
+    <class name="ModeloHibernate.InventarioHabitacion" table="INVENTARIO_HABITACION" schema="PORTAFOLIO" optimistic-lock="version">
         <id name="idInventHab" type="big_decimal">
             <column name="ID_INVENT_HAB" precision="22" scale="0" />
             <generator class="assigned" />
